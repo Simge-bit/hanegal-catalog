@@ -26,20 +26,14 @@ export default function ProductCard({ product }: { product: Product }) {
   )
 
   return (
-    <div className="group bg-[#1e1e1e] rounded-xl overflow-hidden border border-white/5 hover:border-[#CC0000]/50 transition-all duration-500 hover:shadow-xl hover:shadow-[#CC0000]/10"
-      style={{ perspective: '800px' }}
-    >
+    <div className="group bg-[#2d2d2d] rounded-xl overflow-hidden border border-white/5 hover:border-[#CC0000]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#CC0000]/10">
       <Link href={`/products/${product.id}`} className="block">
-        <div className="relative aspect-square bg-[#111] flex items-center justify-center overflow-hidden">
+        <div className="relative aspect-square bg-[#2d2d2d] overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={imgSrc}
             alt={`${product.model_code} ${product.size_inch} İnç Jant Kapağı`}
-            className="w-full h-full object-contain p-2 transition-transform duration-500"
-            style={{
-              transform: 'perspective(600px) rotateY(-18deg) rotateX(5deg)',
-              filter: 'drop-shadow(-8px 8px 16px rgba(0,0,0,0.8))',
-            }}
+            className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-300"
           />
           <button
             onClick={e => { e.preventDefault(); toggle(product.id) }}
