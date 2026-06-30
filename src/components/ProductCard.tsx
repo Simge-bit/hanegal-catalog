@@ -28,12 +28,19 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <div className="group bg-[#2d2d2d] rounded-xl overflow-hidden border border-white/5 hover:border-[#CC0000]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#CC0000]/10">
       <Link href={`/products/${product.id}`} className="block">
-        <div className="relative aspect-square bg-gradient-to-b from-[#3a3a3a] to-[#2d2d2d] overflow-hidden">
+        <div className="relative aspect-square overflow-hidden bg-[#111]">
+          {/* Lastik halka efekti */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="w-[88%] h-[88%] rounded-full" style={{
+              background: 'radial-gradient(circle, #2a2a2a 0% 36%, #080808 36% 46%, #1c1c1c 46% 56%, #080808 56% 66%, #111 66%)',
+              boxShadow: 'inset 0 2px 12px rgba(0,0,0,0.9), 0 4px 20px rgba(0,0,0,0.6)',
+            }} />
+          </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={imgSrc}
             alt={`${product.model_code} ${product.size_inch} İnç Jant Kapağı`}
-            className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+            className="relative w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
           />
           <button
             onClick={e => { e.preventDefault(); toggle(product.id) }}

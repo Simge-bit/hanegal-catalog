@@ -65,14 +65,21 @@ export default function ProductDetail() {
         <div className="grid md:grid-cols-2 gap-8">
           {/* Görsel */}
           <div
-            className="relative bg-gradient-to-b from-[#3a3a3a] to-[#2d2d2d] rounded-2xl overflow-hidden aspect-square cursor-zoom-in group"
+            className="relative bg-[#111] rounded-2xl overflow-hidden aspect-square cursor-zoom-in group"
             onClick={() => setZoomed(true)}
           >
+            {/* Lastik halka efekti */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+              <div className="w-[88%] h-[88%] rounded-full" style={{
+                background: 'radial-gradient(circle, #2a2a2a 0% 36%, #080808 36% 46%, #1c1c1c 46% 56%, #080808 56% 66%, #111 66%)',
+                boxShadow: 'inset 0 2px 12px rgba(0,0,0,0.9), 0 4px 20px rgba(0,0,0,0.6)',
+              }} />
+            </div>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={imgSrc}
               alt={`${product.model_code} ${product.size_inch}" Jant Kapağı`}
-              className="w-full h-full object-contain p-8"
+              className="relative w-full h-full object-contain p-8"
             />
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
               <div className="bg-black/60 rounded-full p-3">
