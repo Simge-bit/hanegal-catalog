@@ -45,21 +45,9 @@ export function buildWhatsAppMessage(
   colorLabel: string,
   lang: 'tr' | 'en'
 ): string {
-  const cars = getCompatibleCars(sizeInch)
-
   if (lang === 'tr') {
-    return `Merhaba, aşağıdaki ürün hakkında bilgi almak istiyorum:\n\n` +
-      `🔴 Model: ${modelCode}\n` +
-      `📐 Boyut: ${sizeInch} inç\n` +
-      `🎨 Renk: ${colorLabel}\n` +
-      `🚗 Uyumlu araçlar: ${cars}\n\n` +
-      `Fiyat ve stok bilgisi verir misiniz?`
+    return `Merhaba, ${modelCode} model ${sizeInch} inç ${colorLabel} jant kapağı hakkında bilgi almak istiyorum.`
   }
 
-  return `Hello, I would like to get information about the following product:\n\n` +
-    `🔴 Model: ${modelCode}\n` +
-    `📐 Size: ${sizeInch} inch\n` +
-    `🎨 Color: ${colorLabel}\n` +
-    `🚗 Compatible cars: ${cars}\n\n` +
-    `Could you provide pricing and availability?`
+  return `Hello, I would like to get information about the ${modelCode} ${sizeInch} inch ${colorLabel} wheel cover.`
 }
