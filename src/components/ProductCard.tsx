@@ -4,6 +4,7 @@ import { useLang } from '@/context/LangContext'
 import { useFavorites } from '@/context/FavoritesContext'
 import Link from 'next/link'
 import { MessageCircle, Heart } from 'lucide-react'
+import { buildWhatsAppMessage } from '@/lib/vehicles'
 
 const COLOR_BADGE: Record<string, string> = {
   silver: 'bg-gray-300 text-gray-800',
@@ -21,9 +22,7 @@ export default function ProductCard({ product }: { product: Product }) {
   const imgSrc = product.image_url || `/products/${product.model_code}_${product.size_inch}inc.webp`
 
   const waMsg = encodeURIComponent(
-    lang === 'tr'
-      ? `Merhaba, ${product.model_code} - ${product.size_inch} inc modeli hakkında bilgi almak istiyorum.`
-      : `Hello, I would like to get information about the ${product.model_code} - ${product.size_inch} inch model.`
+    buildWhatsAppMessage(product.model_code, product.size_inch, colorLabel, lang)
   )
 
   return (

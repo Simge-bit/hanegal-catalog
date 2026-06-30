@@ -5,6 +5,7 @@ import Header from '@/components/Header'
 import { Product, COLOR_LABELS } from '@/types/product'
 import { useLang } from '@/context/LangContext'
 import { ArrowLeft, MessageCircle, ZoomIn, X } from 'lucide-react'
+import { buildWhatsAppMessage } from '@/lib/vehicles'
 
 export default function ProductDetail() {
   const { id } = useParams()
@@ -46,9 +47,7 @@ export default function ProductDetail() {
   const imgSrc = product.image_url || `/products/${product.model_code}_${product.size_inch}inc.webp`
   const colorLabel = COLOR_LABELS[product.color_variant]?.[lang] ?? product.color_variant
   const whatsappMsg = encodeURIComponent(
-    lang === 'tr'
-      ? `Merhaba, ${product.model_code} - ${product.size_inch} inc modeli hakkında bilgi almak istiyorum.`
-      : `Hello, I would like to get information about the ${product.model_code} - ${product.size_inch} inch model.`
+    buildWhatsAppMessage(product.model_code, product.size_inch, colorLabel, lang)
   )
 
   return (
