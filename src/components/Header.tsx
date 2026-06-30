@@ -22,7 +22,7 @@ export default function Header() {
           <Link href="/" className="hover:text-white transition-colors">{t('home')}</Link>
           <Link href="/products" className="hover:text-white transition-colors">{t('products')}</Link>
           <a
-            href={`https://wa.me/905438022477?text=${encodeURIComponent(lang === 'tr' ? 'Merhaba, Hanegal jant kapakları hakkında bilgi almak istiyorum.' : 'Hello, I would like to get information about Hanegal wheel covers.')}`}
+            href={`https://wa.me/905436190346?text=${encodeURIComponent(lang === 'tr' ? 'Merhaba, Hanegal jant kapakları hakkında bilgi almak istiyorum.' : 'Hello, I would like to get information about Hanegal wheel covers.')}`}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-white transition-colors"

@@ -59,7 +59,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
       <div className="px-3 pb-3">
         <a
-          href={`https://wa.me/905438022477?text=${waMsg}`}
+          href={`https://wa.me/905436190346?text=${waMsg}`}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center gap-1.5 w-full py-1.5 rounded-lg bg-green-600/20 hover:bg-green-600/40 text-green-400 text-xs font-medium transition-colors"

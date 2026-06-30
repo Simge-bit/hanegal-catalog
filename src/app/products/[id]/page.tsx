@@ -105,7 +105,7 @@ export default function ProductDetail() {
             </div>
 
             <a
-              href={`https://wa.me/905438022477?text=${whatsappMsg}`}
+              href={`https://wa.me/905436190346?text=${whatsappMsg}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-3 bg-green-600 hover:bg-green-500 text-white font-bold py-4 rounded-xl transition-colors"
