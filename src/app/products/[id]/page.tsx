@@ -70,14 +70,10 @@ export default function ProductDetail() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={imgSrc}
+              src={`${imgSrc}?v=2`}
               alt={`${product.model_code} ${product.size_inch}" Jant Kapağı`}
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain p-4"
             />
-            {/* Lastik overlay */}
-            <div className="absolute inset-0 pointer-events-none" style={{
-              background: 'radial-gradient(circle at center, transparent 0% 68%, #0a0a0a 68% 75%, #161616 75% 80%, #0a0a0a 80% 87%, #060606 87%)',
-            }} />
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
               <div className="bg-black/60 rounded-full p-3">
                 <ZoomIn className="w-6 h-6 text-white" />
