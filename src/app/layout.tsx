@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { LangProvider } from "@/context/LangContext";
+import { FavoritesProvider } from "@/context/FavoritesContext";
 
 export const metadata: Metadata = {
   title: "Hanegal Katalog 2026",
@@ -33,7 +34,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
       </head>
       <body className="min-h-full flex flex-col bg-[#1a1a1a] text-white">
-        <LangProvider>{children}</LangProvider>
+        <LangProvider><FavoritesProvider>{children}</FavoritesProvider></LangProvider>
       </body>
     </html>
   );

@@ -47,6 +47,9 @@ const translations = {
     clearFilter: 'Temizle',
     whatsappMsg: 'Merhaba, {model} - {size} inc modeli hakkında bilgi almak istiyorum.',
     whatsappGeneral: 'Merhaba, Hanegal jant kapakları hakkında bilgi almak istiyorum.',
+    favorites: 'Favorilerim',
+    noFavorites: 'Henüz favori eklemediniz.',
+    browseCatalog: 'Kataloğa göz at',
   },
   en: {
     catalog: 'Catalog',
@@ -91,6 +94,9 @@ const translations = {
     clearFilter: 'Clear',
     whatsappMsg: 'Hello, I would like to get information about the {model} - {size} inch model.',
     whatsappGeneral: 'Hello, I would like to get information about Hanegal wheel covers.',
+    favorites: 'My Favorites',
+    noFavorites: 'No favorites yet.',
+    browseCatalog: 'Browse catalog',
   },
 }
 

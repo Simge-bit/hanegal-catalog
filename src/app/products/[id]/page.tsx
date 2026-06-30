@@ -4,7 +4,7 @@ import { useParams, useRouter } from 'next/navigation'
 import Header from '@/components/Header'
 import { Product, COLOR_LABELS } from '@/types/product'
 import { useLang } from '@/context/LangContext'
-import { ArrowLeft, MessageCircle } from 'lucide-react'
+import { ArrowLeft, MessageCircle, ZoomIn, X } from 'lucide-react'
 
 export default function ProductDetail() {
   const { id } = useParams()
@@ -12,6 +12,7 @@ export default function ProductDetail() {
   const { lang, t } = useLang()
   const [product, setProduct] = useState<Product | null>(null)
   const [related, setRelated] = useState<Product[]>([])
+  const [zoomed, setZoomed] = useState(false)
 
   useEffect(() => {
     fetch('/products.json')
@@ -64,13 +65,21 @@ export default function ProductDetail() {
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* Görsel */}
-          <div className="bg-gradient-to-b from-[#3a3a3a] to-[#2d2d2d] rounded-2xl overflow-hidden aspect-square">
+          <div
+            className="relative bg-gradient-to-b from-[#3a3a3a] to-[#2d2d2d] rounded-2xl overflow-hidden aspect-square cursor-zoom-in group"
+            onClick={() => setZoomed(true)}
+          >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={imgSrc}
               alt={`${product.model_code} ${product.size_inch}" Jant Kapağı`}
               className="w-full h-full object-contain p-8"
             />
+            <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
+              <div className="bg-black/60 rounded-full p-3">
+                <ZoomIn className="w-6 h-6 text-white" />
+              </div>
+            </div>
           </div>
 
           {/* Bilgiler */}
@@ -116,7 +125,7 @@ export default function ProductDetail() {
             </h2>
             <div className="flex gap-3 flex-wrap">
               {related.map(r => {
-                const rImg = r.image_url || `/products/${r.model_code}_${r.size_inch}inc.png`
+                const rImg = r.image_url || `/products/${r.model_code}_${r.size_inch}inc.webp`
                 return (
                   <button
                     key={r.id}
@@ -135,6 +144,28 @@ export default function ProductDetail() {
           </div>
         )}
       </main>
+
+      {/* Zoom overlay */}
+      {zoomed && (
+        <div
+          className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+          onClick={() => setZoomed(false)}
+        >
+          <button
+            className="absolute top-4 right-4 bg-white/10 hover:bg-white/20 rounded-full p-2 transition-colors"
+            onClick={() => setZoomed(false)}
+          >
+            <X className="w-6 h-6 text-white" />
+          </button>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={imgSrc}
+            alt={product.model_code}
+            className="max-w-full max-h-full object-contain"
+            onClick={e => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   )
 }
