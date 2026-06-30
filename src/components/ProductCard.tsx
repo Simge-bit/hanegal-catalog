@@ -26,19 +26,21 @@ export default function ProductCard({ product }: { product: Product }) {
   )
 
   return (
-    <div className="group bg-[#2d2d2d] rounded-xl overflow-hidden border border-white/5 hover:border-[#CC0000]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#CC0000]/10">
+    <div className="group bg-[#1e1e1e] rounded-xl overflow-hidden border border-white/5 hover:border-[#CC0000]/50 transition-all duration-500 hover:shadow-xl hover:shadow-[#CC0000]/10"
+      style={{ perspective: '800px' }}
+    >
       <Link href={`/products/${product.id}`} className="block">
-        <div className="relative aspect-square overflow-hidden bg-[#111]">
+        <div className="relative aspect-square bg-[#111] flex items-center justify-center overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={imgSrc}
             alt={`${product.model_code} ${product.size_inch} İnç Jant Kapağı`}
-            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-contain p-2 transition-transform duration-500"
+            style={{
+              transform: 'perspective(600px) rotateY(-18deg) rotateX(5deg)',
+              filter: 'drop-shadow(-8px 8px 16px rgba(0,0,0,0.8))',
+            }}
           />
-          {/* Lastik overlay — görselin üstünde, merkez şeffaf */}
-          <div className="absolute inset-0 pointer-events-none" style={{
-            background: 'radial-gradient(circle at center, transparent 0% 68%, #0a0a0a 68% 75%, #161616 75% 80%, #0a0a0a 80% 87%, #060606 87%)',
-          }} />
           <button
             onClick={e => { e.preventDefault(); toggle(product.id) }}
             className="absolute top-2 right-2 p-1.5 rounded-full bg-black/40 hover:bg-black/60 transition-colors"
