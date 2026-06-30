@@ -28,26 +28,17 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <div className="group bg-[#2d2d2d] rounded-xl overflow-hidden border border-white/5 hover:border-[#CC0000]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#CC0000]/10">
       <Link href={`/products/${product.id}`} className="block">
-        <div className="relative aspect-square overflow-hidden bg-[#0d0d0d]">
-          {/* Lastik SVG arka plan */}
-          <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-            {/* Dış lastik kauçuk */}
-            <circle cx="50" cy="50" r="49" fill="#0f0f0f"/>
-            <circle cx="50" cy="50" r="46" fill="#141414"/>
-            {/* Lastik iç kenar */}
-            <circle cx="50" cy="50" r="39" fill="#0a0a0a"/>
-            {/* Jant yüzeyi */}
-            <circle cx="50" cy="50" r="38" fill="#252525"/>
-            <circle cx="50" cy="50" r="36" fill="#1e1e1e"/>
-            {/* Merkez - kapağın oturduğu yer */}
-            <circle cx="50" cy="50" r="33" fill="#161616"/>
-          </svg>
+        <div className="relative aspect-square overflow-hidden bg-[#111]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={imgSrc}
             alt={`${product.model_code} ${product.size_inch} İnç Jant Kapağı`}
-            className="relative w-full h-full object-contain p-[16%] group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
           />
+          {/* Lastik overlay — görselin üstünde, merkez şeffaf */}
+          <div className="absolute inset-0 pointer-events-none" style={{
+            background: 'radial-gradient(circle at center, transparent 0% 68%, #0a0a0a 68% 75%, #161616 75% 80%, #0a0a0a 80% 87%, #060606 87%)',
+          }} />
           <button
             onClick={e => { e.preventDefault(); toggle(product.id) }}
             className="absolute top-2 right-2 p-1.5 rounded-full bg-black/40 hover:bg-black/60 transition-colors"

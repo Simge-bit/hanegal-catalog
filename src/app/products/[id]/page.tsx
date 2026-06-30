@@ -68,21 +68,16 @@ export default function ProductDetail() {
             className="relative bg-[#111] rounded-2xl overflow-hidden aspect-square cursor-zoom-in group"
             onClick={() => setZoomed(true)}
           >
-            {/* Lastik SVG arka plan */}
-            <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="49" fill="#0f0f0f"/>
-              <circle cx="50" cy="50" r="46" fill="#141414"/>
-              <circle cx="50" cy="50" r="39" fill="#0a0a0a"/>
-              <circle cx="50" cy="50" r="38" fill="#252525"/>
-              <circle cx="50" cy="50" r="36" fill="#1e1e1e"/>
-              <circle cx="50" cy="50" r="33" fill="#161616"/>
-            </svg>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={imgSrc}
               alt={`${product.model_code} ${product.size_inch}" Jant Kapağı`}
-              className="relative w-full h-full object-contain p-[14%]"
+              className="w-full h-full object-contain"
             />
+            {/* Lastik overlay */}
+            <div className="absolute inset-0 pointer-events-none" style={{
+              background: 'radial-gradient(circle at center, transparent 0% 68%, #0a0a0a 68% 75%, #161616 75% 80%, #0a0a0a 80% 87%, #060606 87%)',
+            }} />
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20">
               <div className="bg-black/60 rounded-full p-3">
                 <ZoomIn className="w-6 h-6 text-white" />
