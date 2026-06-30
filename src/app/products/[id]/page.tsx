@@ -1,0 +1,140 @@
+'use client'
+import { useEffect, useState } from 'react'
+import { useParams, useRouter } from 'next/navigation'
+import Header from '@/components/Header'
+import { Product, COLOR_LABELS } from '@/types/product'
+import { useLang } from '@/context/LangContext'
+import { ArrowLeft, MessageCircle } from 'lucide-react'
+
+export default function ProductDetail() {
+  const { id } = useParams()
+  const router = useRouter()
+  const { lang, t } = useLang()
+  const [product, setProduct] = useState<Product | null>(null)
+  const [related, setRelated] = useState<Product[]>([])
+
+  useEffect(() => {
+    fetch('/products.json')
+      .then(r => r.json())
+      .then((data: Omit<Product, 'id' | 'created_at' | 'updated_at'>[]) => {
+        const withIds = data.map((p, i) => ({
+          ...p,
+          id: String(i + 1),
+          created_at: '',
+          updated_at: '',
+        }))
+        const found = withIds.find(p => p.id === id)
+        setProduct(found || null)
+        if (found) {
+          setRelated(withIds.filter(p => p.base_model === found.base_model && p.id !== found.id))
+        }
+      })
+  }, [id])
+
+  if (!product) {
+    return (
+      <div className="min-h-screen flex flex-col">
+        <Header />
+        <div className="flex-1 flex items-center justify-center">
+          <div className="w-8 h-8 border-2 border-[#CC0000] border-t-transparent rounded-full animate-spin" />
+        </div>
+      </div>
+    )
+  }
+
+  const imgSrc = product.image_url || `/products/${product.model_code}_${product.size_inch}inc.png`
+  const colorLabel = COLOR_LABELS[product.color_variant]?.[lang] ?? product.color_variant
+  const whatsappMsg = encodeURIComponent(
+    lang === 'tr'
+      ? `Merhaba, ${product.model_code} - ${product.size_inch} inc modeli hakkında bilgi almak istiyorum.`
+      : `Hello, I would like to get information about the ${product.model_code} - ${product.size_inch} inch model.`
+  )
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Header />
+      <main className="flex-1 max-w-5xl mx-auto w-full px-4 py-8">
+        <button
+          onClick={() => router.back()}
+          className="flex items-center gap-2 text-white/50 hover:text-white mb-6 transition-colors text-sm"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          {t('products')}
+        </button>
+
+        <div className="grid md:grid-cols-2 gap-8">
+          {/* Görsel */}
+          <div className="bg-gradient-to-b from-[#3a3a3a] to-[#2d2d2d] rounded-2xl overflow-hidden aspect-square">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={imgSrc}
+              alt={`${product.model_code} ${product.size_inch}" Jant Kapağı`}
+              className="w-full h-full object-contain p-8"
+            />
+          </div>
+
+          {/* Bilgiler */}
+          <div className="flex flex-col justify-center space-y-6">
+            <div>
+              <p className="text-[#CC0000] text-sm uppercase tracking-widest mb-1">{t('wheelCover')}</p>
+              <h1 className="text-4xl font-black text-white mb-1">{product.model_code}</h1>
+              <p className="text-white/50 text-lg">{product.size_inch}" {t('inch')}</p>
+            </div>
+
+            <div className="space-y-3">
+              <div className="flex items-center justify-between py-3 border-b border-white/10">
+                <span className="text-white/50 text-sm">{t('modelCode')}</span>
+                <span className="font-mono text-white font-bold">{product.model_code}</span>
+              </div>
+              <div className="flex items-center justify-between py-3 border-b border-white/10">
+                <span className="text-white/50 text-sm">{t('size')}</span>
+                <span className="text-white font-bold">{product.size_inch}"</span>
+              </div>
+              <div className="flex items-center justify-between py-3 border-b border-white/10">
+                <span className="text-white/50 text-sm">{t('color')}</span>
+                <span className="text-white font-bold">{colorLabel}</span>
+              </div>
+            </div>
+
+            <a
+              href={`https://wa.me/905438022477?text=${whatsappMsg}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-3 bg-green-600 hover:bg-green-500 text-white font-bold py-4 rounded-xl transition-colors"
+            >
+              <MessageCircle className="w-5 h-5" />
+              {t('whatsapp')}
+            </a>
+          </div>
+        </div>
+
+        {/* Aynı modelin diğer renkleri */}
+        {related.length > 0 && (
+          <div className="mt-12">
+            <h2 className="text-white/50 text-sm uppercase tracking-widest mb-4">
+              {t('otherColors')}
+            </h2>
+            <div className="flex gap-3 flex-wrap">
+              {related.map(r => {
+                const rImg = r.image_url || `/products/${r.model_code}_${r.size_inch}inc.png`
+                return (
+                  <button
+                    key={r.id}
+                    onClick={() => router.push(`/products/${r.id}`)}
+                    className="bg-[#2d2d2d] rounded-xl p-2 border border-white/10 hover:border-[#CC0000]/50 transition-all w-24"
+                  >
+                    <div className="aspect-square">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img src={rImg} alt={r.model_code} className="w-full h-full object-contain" />
+                    </div>
+                    <p className="text-xs text-center text-white/60 mt-1">{r.model_code}</p>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        )}
+      </main>
+    </div>
+  )
+}

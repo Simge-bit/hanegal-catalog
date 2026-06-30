@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+:root {
+  --hanegal-red: #CC0000;
+  --hanegal-dark: #1a1a1a;
+  --hanegal-gray: #2d2d2d;
+}
+
+body {
+  background-color: #1a1a1a;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }

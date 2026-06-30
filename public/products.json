@@ -1,0 +1,1178 @@
+[
+  {
+    "model_code": "3111",
+    "base_model": "3111",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3111_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4111",
+    "base_model": "4111",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4111_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5111",
+    "base_model": "5111",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5111_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6111",
+    "base_model": "6111",
+    "size_inch": 16,
+    "color_variant": "silver",
+    "image_path": "/products/6111_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3111S",
+    "base_model": "3111",
+    "size_inch": 13,
+    "color_variant": "black_chrome",
+    "image_path": "/products/3111S_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4111S",
+    "base_model": "4111",
+    "size_inch": 14,
+    "color_variant": "black_chrome",
+    "image_path": "/products/4111S_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5111S",
+    "base_model": "5111",
+    "size_inch": 15,
+    "color_variant": "black_chrome",
+    "image_path": "/products/5111S_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6111S",
+    "base_model": "6111",
+    "size_inch": 16,
+    "color_variant": "black_chrome",
+    "image_path": "/products/6111S_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3111R",
+    "base_model": "3111",
+    "size_inch": 13,
+    "color_variant": "bicolor",
+    "image_path": "/products/3111R_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4111R",
+    "base_model": "4111",
+    "size_inch": 14,
+    "color_variant": "bicolor",
+    "image_path": "/products/4111R_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5111R",
+    "base_model": "5111",
+    "size_inch": 15,
+    "color_variant": "bicolor",
+    "image_path": "/products/5111R_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6111R",
+    "base_model": "6111",
+    "size_inch": 16,
+    "color_variant": "bicolor",
+    "image_path": "/products/6111R_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3052",
+    "base_model": "3052",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3052_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4404",
+    "base_model": "4404",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4404_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5504",
+    "base_model": "5504",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5504_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3052S",
+    "base_model": "3052",
+    "size_inch": 13,
+    "color_variant": "black_chrome",
+    "image_path": "/products/3052S_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4404S",
+    "base_model": "4404",
+    "size_inch": 14,
+    "color_variant": "black_chrome",
+    "image_path": "/products/4404S_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5504S",
+    "base_model": "5504",
+    "size_inch": 15,
+    "color_variant": "black_chrome",
+    "image_path": "/products/5504S_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3052R",
+    "base_model": "3052",
+    "size_inch": 13,
+    "color_variant": "bicolor",
+    "image_path": "/products/3052R_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4404R",
+    "base_model": "4404",
+    "size_inch": 14,
+    "color_variant": "bicolor",
+    "image_path": "/products/4404R_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5504R",
+    "base_model": "5504",
+    "size_inch": 15,
+    "color_variant": "bicolor",
+    "image_path": "/products/5504R_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5509",
+    "base_model": "5509",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5509_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6509",
+    "base_model": "6509",
+    "size_inch": 16,
+    "color_variant": "silver",
+    "image_path": "/products/6509_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5509S",
+    "base_model": "5509",
+    "size_inch": 15,
+    "color_variant": "black_chrome",
+    "image_path": "/products/5509S_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6509S",
+    "base_model": "6509",
+    "size_inch": 16,
+    "color_variant": "black_chrome",
+    "image_path": "/products/6509S_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5509R",
+    "base_model": "5509",
+    "size_inch": 15,
+    "color_variant": "bicolor",
+    "image_path": "/products/5509R_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6509R",
+    "base_model": "6509",
+    "size_inch": 16,
+    "color_variant": "bicolor",
+    "image_path": "/products/6509R_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3800",
+    "base_model": "3800",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3800_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4850",
+    "base_model": "4850",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4850_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5700",
+    "base_model": "5700",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5700_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6700",
+    "base_model": "6700",
+    "size_inch": 16,
+    "color_variant": "silver",
+    "image_path": "/products/6700_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3801",
+    "base_model": "3801",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3801_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4851",
+    "base_model": "4851",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4851_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5750",
+    "base_model": "5750",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5750_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6701",
+    "base_model": "6701",
+    "size_inch": 16,
+    "color_variant": "silver",
+    "image_path": "/products/6701_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3701",
+    "base_model": "3701",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3701_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4601",
+    "base_model": "4601",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4601_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5501",
+    "base_model": "5501",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5501_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3051",
+    "base_model": "3051",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3051_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4403",
+    "base_model": "4403",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4403_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4402",
+    "base_model": "4402",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4402_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5714",
+    "base_model": "5714",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5714_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3700",
+    "base_model": "3700",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3700_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4600",
+    "base_model": "4600",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4600_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5500",
+    "base_model": "5500",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5500_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "2310",
+    "base_model": "2310",
+    "size_inch": 12,
+    "color_variant": "silver",
+    "image_path": "/products/2310_12inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3310",
+    "base_model": "3310",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3310_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4310",
+    "base_model": "4310",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4310_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5310",
+    "base_model": "5310",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5310_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "2710",
+    "base_model": "2710",
+    "size_inch": 12,
+    "color_variant": "silver",
+    "image_path": "/products/2710_12inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3710",
+    "base_model": "3710",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3710_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4710",
+    "base_model": "4710",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4710_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5710",
+    "base_model": "5710",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5710_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5600",
+    "base_model": "5600",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5600_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6600",
+    "base_model": "6600",
+    "size_inch": 16,
+    "color_variant": "silver",
+    "image_path": "/products/6600_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4450",
+    "base_model": "4450",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4450_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4451",
+    "base_model": "4451",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4451_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6800",
+    "base_model": "6800",
+    "size_inch": 16,
+    "color_variant": "silver",
+    "image_path": "/products/6800_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6801",
+    "base_model": "6801",
+    "size_inch": 16,
+    "color_variant": "silver",
+    "image_path": "/products/6801_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "2700",
+    "base_model": "2700",
+    "size_inch": 12,
+    "color_variant": "silver",
+    "image_path": "/products/2700_12inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4700",
+    "base_model": "4700",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4700_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3000",
+    "base_model": "3000",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3000_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4000",
+    "base_model": "4000",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4000_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3040",
+    "base_model": "3040",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3040_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4400",
+    "base_model": "4400",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4400_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4800",
+    "base_model": "4800",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4800_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5801",
+    "base_model": "5801",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5801_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6615",
+    "base_model": "6615",
+    "size_inch": 16,
+    "color_variant": "silver",
+    "image_path": "/products/6615_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6615B",
+    "base_model": "6615",
+    "size_inch": 16,
+    "color_variant": "black",
+    "image_path": "/products/6615B_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3350",
+    "base_model": "3350",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3350_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4050",
+    "base_model": "4050",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4050_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3050",
+    "base_model": "3050",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3050_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4401",
+    "base_model": "4401",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4401_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6000",
+    "base_model": "6000",
+    "size_inch": 16,
+    "color_variant": "silver",
+    "image_path": "/products/6000_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5450",
+    "base_model": "5450",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5450_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5900",
+    "base_model": "5900",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5900_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5900S",
+    "base_model": "5900",
+    "size_inch": 15,
+    "color_variant": "black_chrome",
+    "image_path": "/products/5900S_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4350",
+    "base_model": "4350",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4350_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5050",
+    "base_model": "5050",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5050_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4409",
+    "base_model": "4409",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4409_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4409S",
+    "base_model": "4409",
+    "size_inch": 14,
+    "color_variant": "black_chrome",
+    "image_path": "/products/4409S_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4150",
+    "base_model": "4150",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4150_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5250",
+    "base_model": "5250",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5250_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4921",
+    "base_model": "4921",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4921_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4921S",
+    "base_model": "4921",
+    "size_inch": 14,
+    "color_variant": "black_chrome",
+    "image_path": "/products/4921S_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3805",
+    "base_model": "3805",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3805_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4910",
+    "base_model": "4910",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4910_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5903",
+    "base_model": "5903",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5903_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5903S",
+    "base_model": "5903",
+    "size_inch": 15,
+    "color_variant": "black_chrome",
+    "image_path": "/products/5903S_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5510S",
+    "base_model": "5510",
+    "size_inch": 15,
+    "color_variant": "black_chrome",
+    "image_path": "/products/5510S_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6510S",
+    "base_model": "6510",
+    "size_inch": 16,
+    "color_variant": "black_chrome",
+    "image_path": "/products/6510S_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4920",
+    "base_model": "4920",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4920_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4920S",
+    "base_model": "4920",
+    "size_inch": 14,
+    "color_variant": "black_chrome",
+    "image_path": "/products/4920S_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6750",
+    "base_model": "6750",
+    "size_inch": 16,
+    "color_variant": "silver",
+    "image_path": "/products/6750_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4500",
+    "base_model": "4500",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4500_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5901",
+    "base_model": "5901",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5901_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5902",
+    "base_model": "5902",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5902_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6100",
+    "base_model": "6100",
+    "size_inch": 16,
+    "color_variant": "silver",
+    "image_path": "/products/6100_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6150",
+    "base_model": "6150",
+    "size_inch": 16,
+    "color_variant": "silver",
+    "image_path": "/products/6150_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5701",
+    "base_model": "5701",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5701_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5200",
+    "base_model": "5200",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5200_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5300",
+    "base_model": "5300",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5300_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3100",
+    "base_model": "3100",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3100_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6706",
+    "base_model": "6706",
+    "size_inch": 16,
+    "color_variant": "silver",
+    "image_path": "/products/6706_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6707",
+    "base_model": "6707",
+    "size_inch": 16,
+    "color_variant": "silver",
+    "image_path": "/products/6707_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5511",
+    "base_model": "5511",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5511_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4151",
+    "base_model": "4151",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4151_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5100",
+    "base_model": "5100",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5100_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4200",
+    "base_model": "4200",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4200_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5000",
+    "base_model": "5000",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5000_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3500",
+    "base_model": "3500",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3500_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3300",
+    "base_model": "3300",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3300_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3302",
+    "base_model": "3302",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3302_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6660",
+    "base_model": "6660",
+    "size_inch": 16,
+    "color_variant": "silver",
+    "image_path": "/products/6660_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4100",
+    "base_model": "4100",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4100_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4102",
+    "base_model": "4102",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4102_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4900",
+    "base_model": "4900",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4900_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5950",
+    "base_model": "5950",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5950_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4405",
+    "base_model": "4405",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4405_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6900",
+    "base_model": "6900",
+    "size_inch": 16,
+    "color_variant": "silver",
+    "image_path": "/products/6900_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6200",
+    "base_model": "6200",
+    "size_inch": 16,
+    "color_variant": "silver",
+    "image_path": "/products/6200_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5806",
+    "base_model": "5806",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5806_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5506",
+    "base_model": "5506",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5506_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5503",
+    "base_model": "5503",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5503_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6620",
+    "base_model": "6620",
+    "size_inch": 16,
+    "color_variant": "silver",
+    "image_path": "/products/6620_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3600",
+    "base_model": "3600",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3600_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5400",
+    "base_model": "5400",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5400_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4300",
+    "base_model": "4300",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4300_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4930",
+    "base_model": "4930",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4930_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3019",
+    "base_model": "3019",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3019_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3400",
+    "base_model": "3400",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3400_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3450",
+    "base_model": "3450",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3450_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4701",
+    "base_model": "4701",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4701_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5904",
+    "base_model": "5904",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5904_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4250",
+    "base_model": "4250",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4250_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3250",
+    "base_model": "3250",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3250_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4928",
+    "base_model": "4928",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4928_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5800",
+    "base_model": "5800",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5800_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "6705",
+    "base_model": "6705",
+    "size_inch": 16,
+    "color_variant": "silver",
+    "image_path": "/products/6705_16inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3260",
+    "base_model": "3260",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3260_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3150",
+    "base_model": "3150",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3150_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3200",
+    "base_model": "3200",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3200_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "3900",
+    "base_model": "3900",
+    "size_inch": 13,
+    "color_variant": "silver",
+    "image_path": "/products/3900_13inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5507",
+    "base_model": "5507",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5507_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5502",
+    "base_model": "5502",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5502_15inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "4929",
+    "base_model": "4929",
+    "size_inch": 14,
+    "color_variant": "silver",
+    "image_path": "/products/4929_14inc.png",
+    "is_active": true
+  },
+  {
+    "model_code": "5512",
+    "base_model": "5512",
+    "size_inch": 15,
+    "color_variant": "silver",
+    "image_path": "/products/5512_15inc.png",
+    "is_active": true
+  }
+]
