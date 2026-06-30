@@ -42,7 +42,7 @@ export default function ProductDetail() {
     )
   }
 
-  const imgSrc = product.image_url || `/products/${product.model_code}_${product.size_inch}inc.png`
+  const imgSrc = product.image_url || `/products/${product.model_code}_${product.size_inch}inc.webp`
   const colorLabel = COLOR_LABELS[product.color_variant]?.[lang] ?? product.color_variant
   const whatsappMsg = encodeURIComponent(
     lang === 'tr'

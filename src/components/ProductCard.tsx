@@ -14,7 +14,7 @@ export default function ProductCard({ product }: { product: Product }) {
   const { lang } = useLang()
   const colorLabel = COLOR_LABELS[product.color_variant]?.[lang] ?? product.color_variant
 
-  const imgSrc = product.image_url || `/products/${product.model_code}_${product.size_inch}inc.png`
+  const imgSrc = product.image_url || `/products/${product.model_code}_${product.size_inch}inc.webp`
 
   return (
     <Link href={`/products/${product.id}`}>
