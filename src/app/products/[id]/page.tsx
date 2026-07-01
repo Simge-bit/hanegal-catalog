@@ -106,9 +106,21 @@ export default function ProductDetail() {
                 <span className="text-white/50 text-sm">{t('color')}</span>
                 <span className="text-white font-bold">{colorLabel}</span>
               </div>
+              {product.compatible_cars && product.compatible_cars.length > 0 && (
+                <div className="py-3 border-b border-white/10">
+                  <span className="text-white/50 text-sm block mb-2">Uyumlu Araçlar</span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {product.compatible_cars.map(car => (
+                      <span key={car} className="text-xs px-2 py-1 rounded-full bg-white/5 border border-white/10 text-white/70">
+                        {car}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
 
-            <a
+            <
               href={`https://wa.me/905436190346?text=${whatsappMsg}`}
               target="_blank"
               rel="noopener noreferrer"
