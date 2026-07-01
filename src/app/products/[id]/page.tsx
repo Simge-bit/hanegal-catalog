@@ -16,21 +16,26 @@ export default function ProductDetail() {
   const [zoomed, setZoomed] = useState(false)
 
   useEffect(() => {
-    fetch('/products.json')
-      .then(r => r.json())
-      .then((data: Omit<Product, 'id' | 'created_at' | 'updated_at'>[]) => {
-        const withIds = data.map((p, i) => ({
-          ...p,
-          id: String(i + 1),
-          created_at: '',
-          updated_at: '',
-        }))
-        const found = withIds.find(p => p.id === id)
+    import('@/lib/supabase').then(({ getProducts }) =>
+      getProducts({ activeOnly: false })
+    ).then(data => {
+      if (data.length > 0) {
+        const found = data.find(p => p.id === id)
         setProduct(found || null)
-        if (found) {
-          setRelated(withIds.filter(p => p.base_model === found.base_model && p.id !== found.id))
-        }
-      })
+        if (found) setRelated(data.filter(p => p.base_model === found.base_model && p.id !== found.id))
+      } else {
+        throw new Error('empty')
+      }
+    }).catch(() => {
+      fetch('/products.json')
+        .then(r => r.json())
+        .then((data: Omit<Product, 'id' | 'created_at' | 'updated_at'>[]) => {
+          const withIds = data.map((p, i) => ({ ...p, id: String(i + 1), created_at: '', updated_at: '' }))
+          const found = withIds.find(p => p.id === id)
+          setProduct(found || null)
+          if (found) setRelated(withIds.filter(p => p.base_model === found.base_model && p.id !== found.id))
+        })
+    })
   }, [id])
 
   if (!product) {

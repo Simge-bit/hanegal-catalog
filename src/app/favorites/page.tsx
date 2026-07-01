@@ -14,17 +14,21 @@ export default function FavoritesPage() {
   const [products, setProducts] = useState<Product[]>([])
 
   useEffect(() => {
-    fetch('/products.json')
-      .then(r => r.json())
-      .then((data: Omit<Product, 'id' | 'created_at' | 'updated_at'>[]) => {
-        const withIds = data.map((p, i) => ({
-          ...p,
-          id: String(i + 1),
-          created_at: '',
-          updated_at: '',
-        }))
-        setProducts(withIds)
-      })
+    import('@/lib/supabase').then(({ getProducts }) =>
+      getProducts({ activeOnly: true })
+    ).then(data => {
+      if (data.length > 0) {
+        setProducts(data)
+      } else {
+        throw new Error('empty')
+      }
+    }).catch(() => {
+      fetch('/products.json')
+        .then(r => r.json())
+        .then((data: Omit<Product, 'id' | 'created_at' | 'updated_at'>[]) => {
+          setProducts(data.map((p, i) => ({ ...p, id: String(i + 1), created_at: '', updated_at: '' })))
+        })
+    })
   }, [])
 
   const favProducts = products.filter(p => favorites.includes(p.id))

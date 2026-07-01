@@ -7,6 +7,13 @@ import { Product } from '@/types/product'
 import { useLang } from '@/context/LangContext'
 import { MessageCircle, Shield, Layers } from 'lucide-react'
 import Link from 'next/link'
+import { getProducts } from '@/lib/supabase'
+
+async function loadFromJson(): Promise<Product[]> {
+  const res = await fetch('/products.json')
+  const data: Omit<Product, 'id' | 'created_at' | 'updated_at'>[] = await res.json()
+  return data.map((p, i) => ({ ...p, id: String(i + 1), created_at: '', updated_at: '' }))
+}
 
 export default function Home() {
   const { lang, t } = useLang()
@@ -17,17 +24,15 @@ export default function Home() {
   const [color, setColor] = useState('')
 
   useEffect(() => {
-    fetch('/products.json')
-      .then(r => r.json())
-      .then((data: Omit<Product, 'id' | 'created_at' | 'updated_at'>[]) => {
-        const withIds = data.map((p, i) => ({
-          ...p,
-          id: String(i + 1),
-          created_at: '',
-          updated_at: '',
-        }))
-        setProducts(withIds)
+    getProducts({ activeOnly: true })
+      .then(data => {
+        if (data.length > 0) {
+          setProducts(data)
+        } else {
+          return loadFromJson().then(setProducts)
+        }
       })
+      .catch(() => loadFromJson().then(setProducts))
       .finally(() => setLoading(false))
   }, [])
 
