@@ -7,7 +7,6 @@ import { supabase, getProducts, deleteProduct, upsertProduct, uploadProductImage
 import { Product, COLOR_LABELS, ColorVariant, SIZE_OPTIONS } from '@/types/product'
 import { useLang } from '@/context/LangContext'
 import { Plus, Pencil, Trash2, LogOut, Eye, EyeOff, Upload, X, Check } from 'lucide-react'
-import { VEHICLES } from '@/lib/vehicles'
 
 export default function AdminProducts() {
   const router = useRouter()
@@ -19,6 +18,7 @@ export default function AdminProducts() {
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [imagePreview, setImagePreview] = useState<string | null>(null)
   const [searchAdmin, setSearchAdmin] = useState('')
+  const [carInput, setCarInput] = useState('')
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
@@ -274,31 +274,46 @@ export default function AdminProducts() {
             {/* Uyumlu Araçlar */}
             <div>
               <label className="block text-white/50 text-xs mb-2">Uyumlu Araçlar</label>
-              <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto pr-1">
-                {VEHICLES.map(v => {
-                  const key = `${v.brand} ${v.model}`
-                  const selected = (editProduct.compatible_cars || []).includes(key)
-                  return (
-                    <button
-                      key={key}
-                      type="button"
-                      onClick={() => {
-                        const current = editProduct.compatible_cars || []
-                        setEditProduct({
-                          ...editProduct,
-                          compatible_cars: selected ? current.filter(c => c !== key) : [...current, key]
-                        })
-                      }}
-                      className={`text-xs px-2 py-1 rounded-full border transition-colors ${
-                        selected
-                          ? 'bg-[#CC0000]/20 border-[#CC0000]/60 text-[#CC0000]'
-                          : 'border-white/10 text-white/40 hover:border-white/30'
-                      }`}
-                    >
-                      {key}
+              <div className="flex gap-2 mb-2">
+                <input
+                  value={carInput}
+                  onChange={e => setCarInput(e.target.value)}
+                  onKeyDown={e => {
+                    if ((e.key === 'Enter' || e.key === ',') && carInput.trim()) {
+                      e.preventDefault()
+                      const val = carInput.trim()
+                      if (!(editProduct.compatible_cars || []).includes(val)) {
+                        setEditProduct({ ...editProduct, compatible_cars: [...(editProduct.compatible_cars || []), val] })
+                      }
+                      setCarInput('')
+                    }
+                  }}
+                  placeholder="ör. Renault Clio, Ford Focus..."
+                  className="flex-1 bg-[#1a1a1a] border border-white/10 rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-[#CC0000]/50"
+                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    const val = carInput.trim()
+                    if (val && !(editProduct.compatible_cars || []).includes(val)) {
+                      setEditProduct({ ...editProduct, compatible_cars: [...(editProduct.compatible_cars || []), val] })
+                    }
+                    setCarInput('')
+                  }}
+                  className="px-3 py-2 bg-[#CC0000]/20 hover:bg-[#CC0000]/30 text-[#CC0000] rounded-xl text-sm transition-colors"
+                >
+                  <Plus className="w-4 h-4" />
+                </button>
+              </div>
+              <div className="flex flex-wrap gap-1.5">
+                {(editProduct.compatible_cars || []).map(car => (
+                  <span key={car} className="flex items-center gap-1 text-xs px-2 py-1 rounded-full bg-[#CC0000]/10 border border-[#CC0000]/30 text-[#CC0000]">
+                    {car}
+                    <button type="button" onClick={() => setEditProduct({ ...editProduct, compatible_cars: (editProduct.compatible_cars || []).filter(c => c !== car) })}>
+                      <X className="w-3 h-3" />
                     </button>
-                  )
-                })}
+                  </span>
+                ))}
               </div>
             </div>
 
