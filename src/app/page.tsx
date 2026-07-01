@@ -24,6 +24,24 @@ export default function Home() {
   const [color, setColor] = useState('')
   const [pdfLoading, setPdfLoading] = useState(false)
 
+  async function imgToBase64(src: string): Promise<string | null> {
+    return new Promise(resolve => {
+      const img = new window.Image()
+      img.crossOrigin = 'anonymous'
+      img.onload = () => {
+        const canvas = document.createElement('canvas')
+        canvas.width = img.naturalWidth || 200
+        canvas.height = img.naturalHeight || 200
+        const ctx = canvas.getContext('2d')
+        if (!ctx) return resolve(null)
+        ctx.drawImage(img, 0, 0)
+        resolve(canvas.toDataURL('image/jpeg', 0.8))
+      }
+      img.onerror = () => resolve(null)
+      img.src = src
+    })
+  }
+
   async function downloadPdf() {
     setPdfLoading(true)
     const { default: jsPDF } = await import('jspdf')
@@ -46,34 +64,46 @@ export default function Home() {
     y += 30
 
     const colW = (pageW - margin * 2) / 3
+    const cardH = 52
+    const imgSize = 30
     let col = 0
 
     for (const p of products.filter(pr => pr.is_active !== false)) {
-      if (y > 260) {
+      if (col === 0 && y + cardH > 270) {
         doc.addPage()
         doc.setFillColor(26, 26, 26)
         doc.rect(0, 0, pageW, 297, 'F')
         y = margin
-        col = 0
       }
       const x = margin + col * colW
       doc.setFillColor(45, 45, 45)
-      doc.roundedRect(x, y, colW - 3, 28, 2, 2, 'F')
+      doc.roundedRect(x, y, colW - 3, cardH, 2, 2, 'F')
+
+      const imgSrc = p.image_url || `/products/${p.model_code}_${p.size_inch}inc.webp`
+      const b64 = await imgToBase64(imgSrc)
+      if (b64) {
+        doc.addImage(b64, 'JPEG', x + 2, y + 2, imgSize, imgSize)
+      }
+
+      const tx = x + imgSize + 4
       doc.setTextColor(255, 255, 255)
-      doc.setFontSize(11)
+      doc.setFontSize(10)
       doc.setFont('helvetica', 'bold')
-      doc.text(p.model_code, x + 4, y + 8)
+      doc.text(p.model_code, tx, y + 10)
       doc.setFontSize(8)
       doc.setFont('helvetica', 'normal')
       doc.setTextColor(180, 180, 180)
-      doc.text(`${p.size_inch}" - ${p.color_variant}`, x + 4, y + 15)
+      doc.text(`${p.size_inch}"`, tx, y + 18)
+      doc.text(p.color_variant, tx, y + 25)
       if (p.price) {
         doc.setTextColor(204, 0, 0)
         doc.setFontSize(9)
-        doc.text(`${p.price} TL`, x + 4, y + 22)
+        doc.setFont('helvetica', 'bold')
+        doc.text(`${p.price} TL`, tx, y + 34)
       }
+
       col++
-      if (col >= 3) { col = 0; y += 31 }
+      if (col >= 3) { col = 0; y += cardH + 3 }
     }
 
     doc.setTextColor(100, 100, 100)
