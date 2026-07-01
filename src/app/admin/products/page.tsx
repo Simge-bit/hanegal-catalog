@@ -53,7 +53,7 @@ export default function AdminProducts() {
       if (imageFile && editProduct.model_code) {
         imageUrl = await uploadProductImage(imageFile, editProduct.model_code)
       }
-      await upsertProduct({ ...editProduct, image_url: imageUrl })
+      await upsertProduct({ ...editProduct, image_url: imageUrl, base_model: editProduct.base_model || editProduct.model_code })
       setEditProduct(null)
       setImageFile(null)
       setImagePreview(null)
