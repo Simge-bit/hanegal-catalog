@@ -8,6 +8,7 @@ export interface Product {
   color_variant: ColorVariant
   image_url: string | null
   is_active: boolean
+  compatible_cars: string[]
   created_at: string
   updated_at: string
 }

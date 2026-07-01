@@ -1,4 +1,4 @@
-const VEHICLES = [
+export const VEHICLES = [
   { brand: 'Dacia', model: 'Logan', sizes: [13, 14, 15] },
   { brand: 'Dacia', model: 'Sandero', sizes: [13, 14, 15] },
   { brand: 'Dacia', model: 'Duster', sizes: [15, 16] },

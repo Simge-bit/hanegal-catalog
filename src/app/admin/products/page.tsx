@@ -7,6 +7,7 @@ import { supabase, getProducts, deleteProduct, upsertProduct, uploadProductImage
 import { Product, COLOR_LABELS, ColorVariant, SIZE_OPTIONS } from '@/types/product'
 import { useLang } from '@/context/LangContext'
 import { Plus, Pencil, Trash2, LogOut, Eye, EyeOff, Upload, X, Check } from 'lucide-react'
+import { VEHICLES } from '@/lib/vehicles'
 
 export default function AdminProducts() {
   const router = useRouter()
@@ -268,6 +269,37 @@ export default function AdminProducts() {
                   <option key={v} value={v}>{l[lang]}</option>
                 ))}
               </select>
+            </div>
+
+            {/* Uyumlu Araçlar */}
+            <div>
+              <label className="block text-white/50 text-xs mb-2">Uyumlu Araçlar</label>
+              <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto pr-1">
+                {VEHICLES.filter(v => v.sizes.includes(editProduct.size_inch || 13)).map(v => {
+                  const key = `${v.brand} ${v.model}`
+                  const selected = (editProduct.compatible_cars || []).includes(key)
+                  return (
+                    <button
+                      key={key}
+                      type="button"
+                      onClick={() => {
+                        const current = editProduct.compatible_cars || []
+                        setEditProduct({
+                          ...editProduct,
+                          compatible_cars: selected ? current.filter(c => c !== key) : [...current, key]
+                        })
+                      }}
+                      className={`text-xs px-2 py-1 rounded-full border transition-colors ${
+                        selected
+                          ? 'bg-[#CC0000]/20 border-[#CC0000]/60 text-[#CC0000]'
+                          : 'border-white/10 text-white/40 hover:border-white/30'
+                      }`}
+                    >
+                      {key}
+                    </button>
+                  )
+                })}
+              </div>
             </div>
 
             <div className="flex items-center gap-2">
