@@ -5,7 +5,7 @@ import ProductCard from '@/components/ProductCard'
 import FilterBar from '@/components/FilterBar'
 import { Product } from '@/types/product'
 import { useLang } from '@/context/LangContext'
-import { MessageCircle, Shield, Layers } from 'lucide-react'
+import { MessageCircle, Shield, Layers, FileDown } from 'lucide-react'
 import Link from 'next/link'
 import { getProducts } from '@/lib/supabase'
 
@@ -22,6 +22,66 @@ export default function Home() {
   const [search, setSearch] = useState('')
   const [size, setSize] = useState('')
   const [color, setColor] = useState('')
+  const [pdfLoading, setPdfLoading] = useState(false)
+
+  async function downloadPdf() {
+    setPdfLoading(true)
+    const { default: jsPDF } = await import('jspdf')
+    const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' })
+    const pageW = 210
+    const margin = 14
+    let y = margin
+
+    doc.setFillColor(26, 26, 26)
+    doc.rect(0, 0, pageW, 297, 'F')
+    doc.setTextColor(204, 0, 0)
+    doc.setFontSize(28)
+    doc.setFont('helvetica', 'bold')
+    doc.text('HANEGAL', margin, y + 10)
+    doc.setTextColor(180, 180, 180)
+    doc.setFontSize(10)
+    doc.text('JANT KAPAGI KATALOGU 2026', margin, y + 18)
+    doc.setDrawColor(204, 0, 0)
+    doc.line(margin, y + 22, pageW - margin, y + 22)
+    y += 30
+
+    const colW = (pageW - margin * 2) / 3
+    let col = 0
+
+    for (const p of products.filter(pr => pr.is_active !== false)) {
+      if (y > 260) {
+        doc.addPage()
+        doc.setFillColor(26, 26, 26)
+        doc.rect(0, 0, pageW, 297, 'F')
+        y = margin
+        col = 0
+      }
+      const x = margin + col * colW
+      doc.setFillColor(45, 45, 45)
+      doc.roundedRect(x, y, colW - 3, 28, 2, 2, 'F')
+      doc.setTextColor(255, 255, 255)
+      doc.setFontSize(11)
+      doc.setFont('helvetica', 'bold')
+      doc.text(p.model_code, x + 4, y + 8)
+      doc.setFontSize(8)
+      doc.setFont('helvetica', 'normal')
+      doc.setTextColor(180, 180, 180)
+      doc.text(`${p.size_inch}" - ${p.color_variant}`, x + 4, y + 15)
+      if (p.price) {
+        doc.setTextColor(204, 0, 0)
+        doc.setFontSize(9)
+        doc.text(`${p.price} TL`, x + 4, y + 22)
+      }
+      col++
+      if (col >= 3) { col = 0; y += 31 }
+    }
+
+    doc.setTextColor(100, 100, 100)
+    doc.setFontSize(8)
+    doc.text('hanegal-catalog.vercel.app | +90 543 619 03 46', pageW / 2, 292, { align: 'center' })
+    doc.save('Hanegal-Katalog-2026.pdf')
+    setPdfLoading(false)
+  }
 
   useEffect(() => {
     Promise.all([
@@ -126,15 +186,27 @@ export default function Home() {
 
       {/* Katalog */}
       <main id="katalog" className="flex-1 max-w-7xl mx-auto w-full px-4 py-8 space-y-6">
-        <FilterBar
-          search={search}
-          size={size}
-          color={color}
-          onSearch={setSearch}
-          onSize={setSize}
-          onColor={setColor}
-          total={filtered.length}
-        />
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex-1">
+            <FilterBar
+              search={search}
+              size={size}
+              color={color}
+              onSearch={setSearch}
+              onSize={setSize}
+              onColor={setColor}
+              total={filtered.length}
+            />
+          </div>
+          <button
+            onClick={downloadPdf}
+            disabled={pdfLoading}
+            className="flex-shrink-0 flex items-center gap-2 px-4 py-2 border border-white/10 text-white/50 hover:text-white hover:border-white/30 rounded-xl text-sm transition-colors disabled:opacity-40"
+          >
+            <FileDown className="w-4 h-4" />
+            {pdfLoading ? 'Hazırlanıyor...' : 'PDF İndir'}
+          </button>
+        </div>
 
         {loading ? (
           <div className="flex items-center justify-center py-24">
