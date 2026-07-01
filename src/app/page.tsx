@@ -191,7 +191,9 @@ export default function Home() {
         </div>
 
         <div className="border-t border-white/5 py-4 flex items-center justify-center gap-4 text-white/20 text-xs">
-          <span>{t('allRightsReserved')} · Simge Solmaz tarafından geliştirildi</span>
+          <span>{t('allRightsReserved')}</span>
+          <span className="text-white/10">·</span>
+          <span>Made with <span className="text-[#CC0000]">♥</span> by <span className="text-white/40 font-medium">Simge Solmaz</span></span>
         </div>
       </footer>
     </div>
