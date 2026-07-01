@@ -16,25 +16,24 @@ export default function ProductDetail() {
   const [zoomed, setZoomed] = useState(false)
 
   useEffect(() => {
-    import('@/lib/supabase').then(({ getProducts }) =>
-      getProducts({ activeOnly: false })
-    ).then(data => {
-      if (data.length > 0) {
-        const found = data.find(p => p.id === id)
-        setProduct(found || null)
-        if (found) setRelated(data.filter(p => p.base_model === found.base_model && p.id !== found.id))
-      } else {
-        throw new Error('empty')
-      }
-    }).catch(() => {
+    const loadJson = () =>
       fetch('/products.json')
         .then(r => r.json())
-        .then((data: Omit<Product, 'id' | 'created_at' | 'updated_at'>[]) => {
-          const withIds = data.map((p, i) => ({ ...p, id: String(i + 1), created_at: '', updated_at: '' }))
-          const found = withIds.find(p => p.id === id)
-          setProduct(found || null)
-          if (found) setRelated(withIds.filter(p => p.base_model === found.base_model && p.id !== found.id))
-        })
+        .then((data: Omit<Product, 'id' | 'created_at' | 'updated_at'>[]) =>
+          data.map((p, i) => ({ ...p, id: String(i + 1), created_at: '', updated_at: '' }))
+        )
+    Promise.all([
+      loadJson(),
+      import('@/lib/supabase').then(({ getProducts }) => getProducts({ activeOnly: false })).catch(() => [] as Product[]),
+    ]).then(([jsonProducts, dbProducts]) => {
+      const dbIds = new Set(dbProducts.map(p => p.model_code + '_' + p.size_inch + '_' + p.color_variant))
+      const all = [
+        ...dbProducts,
+        ...jsonProducts.filter(p => !dbIds.has(p.model_code + '_' + p.size_inch + '_' + p.color_variant)),
+      ]
+      const found = all.find(p => p.id === id)
+      setProduct(found || null)
+      if (found) setRelated(all.filter(p => p.base_model === found.base_model && p.id !== found.id))
     })
   }, [id])
 

@@ -24,16 +24,17 @@ export default function Home() {
   const [color, setColor] = useState('')
 
   useEffect(() => {
-    getProducts({ activeOnly: true })
-      .then(data => {
-        if (data.length > 0) {
-          setProducts(data)
-        } else {
-          return loadFromJson().then(setProducts)
-        }
-      })
-      .catch(() => loadFromJson().then(setProducts))
-      .finally(() => setLoading(false))
+    Promise.all([
+      loadFromJson(),
+      getProducts({ activeOnly: true }).catch(() => [] as Product[]),
+    ]).then(([jsonProducts, dbProducts]) => {
+      const dbIds = new Set(dbProducts.map(p => p.model_code + '_' + p.size_inch + '_' + p.color_variant))
+      const merged = [
+        ...dbProducts,
+        ...jsonProducts.filter(p => !dbIds.has(p.model_code + '_' + p.size_inch + '_' + p.color_variant)),
+      ]
+      setProducts(merged)
+    }).finally(() => setLoading(false))
   }, [])
 
   const filtered = useMemo(() => {

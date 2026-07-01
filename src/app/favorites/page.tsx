@@ -14,20 +14,21 @@ export default function FavoritesPage() {
   const [products, setProducts] = useState<Product[]>([])
 
   useEffect(() => {
-    import('@/lib/supabase').then(({ getProducts }) =>
-      getProducts({ activeOnly: true })
-    ).then(data => {
-      if (data.length > 0) {
-        setProducts(data)
-      } else {
-        throw new Error('empty')
-      }
-    }).catch(() => {
+    const loadJson = () =>
       fetch('/products.json')
         .then(r => r.json())
-        .then((data: Omit<Product, 'id' | 'created_at' | 'updated_at'>[]) => {
-          setProducts(data.map((p, i) => ({ ...p, id: String(i + 1), created_at: '', updated_at: '' })))
-        })
+        .then((data: Omit<Product, 'id' | 'created_at' | 'updated_at'>[]) =>
+          data.map((p, i) => ({ ...p, id: String(i + 1), created_at: '', updated_at: '' }))
+        )
+    Promise.all([
+      loadJson(),
+      import('@/lib/supabase').then(({ getProducts }) => getProducts({ activeOnly: true })).catch(() => [] as Product[]),
+    ]).then(([jsonProducts, dbProducts]) => {
+      const dbIds = new Set(dbProducts.map(p => p.model_code + '_' + p.size_inch + '_' + p.color_variant))
+      setProducts([
+        ...dbProducts,
+        ...jsonProducts.filter(p => !dbIds.has(p.model_code + '_' + p.size_inch + '_' + p.color_variant)),
+      ])
     })
   }, [])
 
