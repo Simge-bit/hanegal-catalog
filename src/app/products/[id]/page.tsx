@@ -106,6 +106,18 @@ export default function ProductDetail() {
                 <span className="text-white/50 text-sm">{t('color')}</span>
                 <span className="text-white font-bold">{colorLabel}</span>
               </div>
+              {product.price && (
+                <div className="flex items-center justify-between py-3 border-b border-white/10">
+                  <span className="text-white/50 text-sm">Fiyat</span>
+                  <span className="text-[#CC0000] font-black text-xl">₺{product.price.toLocaleString('tr-TR')}</span>
+                </div>
+              )}
+              {product.in_stock === false && (
+                <div className="flex items-center justify-between py-3 border-b border-white/10">
+                  <span className="text-white/50 text-sm">Stok</span>
+                  <span className="text-red-400 font-bold text-sm">Stokta Yok</span>
+                </div>
+              )}
               {product.compatible_cars && product.compatible_cars.length > 0 && (
                 <div className="py-3 border-b border-white/10">
                   <span className="text-white/50 text-sm block mb-2">Uyumlu Araçlar</span>
@@ -120,7 +132,7 @@ export default function ProductDetail() {
               )}
             </div>
 
-            <
+            <a
               href={`https://wa.me/905436190346?text=${whatsappMsg}`}
               target="_blank"
               rel="noopener noreferrer"

@@ -258,6 +258,31 @@ export default function AdminProducts() {
               </div>
             </div>
 
+            <div className="grid grid-cols-2 gap-3">
+              <div>
+                <label className="block text-white/50 text-xs mb-1">Fiyat (₺)</label>
+                <input
+                  type="number"
+                  value={editProduct.price || ''}
+                  onChange={e => setEditProduct({ ...editProduct, price: e.target.value ? Number(e.target.value) : null })}
+                  placeholder="0.00"
+                  className="w-full bg-[#1a1a1a] border border-white/10 rounded-xl px-3 py-2 text-white text-sm focus:outline-none focus:border-[#CC0000]/50"
+                />
+              </div>
+              <div className="flex items-end pb-1">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <button
+                    type="button"
+                    onClick={() => setEditProduct({ ...editProduct, in_stock: !editProduct.in_stock })}
+                    className={`w-10 h-6 rounded-full transition-colors ${editProduct.in_stock !== false ? 'bg-green-500' : 'bg-red-500/60'}`}
+                  >
+                    <div className={`w-4 h-4 bg-white rounded-full mx-1 transition-transform ${editProduct.in_stock !== false ? 'translate-x-4' : ''}`} />
+                  </button>
+                  <span className="text-sm text-white/60">{editProduct.in_stock !== false ? 'Stokta Var' : 'Stokta Yok'}</span>
+                </label>
+              </div>
+            </div>
+
             <div>
               <label className="block text-white/50 text-xs mb-1">{t('color')}</label>
               <select

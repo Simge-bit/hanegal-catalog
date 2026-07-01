@@ -54,6 +54,14 @@ export default function ProductCard({ product }: { product: Product }) {
               {colorLabel}
             </span>
           </div>
+          <div className="flex items-center justify-between mt-2">
+            {product.price ? (
+              <span className="text-[#CC0000] font-bold text-sm">₺{product.price.toLocaleString('tr-TR')}</span>
+            ) : <span />}
+            {product.in_stock === false && (
+              <span className="text-xs text-red-400/70">Stokta Yok</span>
+            )}
+          </div>
         </div>
       </Link>
 
