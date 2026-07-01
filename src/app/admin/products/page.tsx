@@ -275,7 +275,7 @@ export default function AdminProducts() {
             <div>
               <label className="block text-white/50 text-xs mb-2">Uyumlu Araçlar</label>
               <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto pr-1">
-                {VEHICLES.filter(v => v.sizes.includes(editProduct.size_inch || 13)).map(v => {
+                {VEHICLES.map(v => {
                   const key = `${v.brand} ${v.model}`
                   const selected = (editProduct.compatible_cars || []).includes(key)
                   return (
