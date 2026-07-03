@@ -29,15 +29,18 @@ export default function AdminProducts() {
 
   async function loadProducts() {
     setLoading(true)
-    try {
-      const data = await getProducts({ activeOnly: false })
-      setProducts(data)
-    } catch {
-      // Fallback to local JSON if Supabase not set up yet
-      const res = await fetch('/products.json')
-      const data = await res.json()
-      setProducts(data.map((p: Product, i: number) => ({ ...p, id: String(i + 1), created_at: '', updated_at: '' })))
-    }
+    const [jsonRes, dbProducts] = await Promise.all([
+      fetch('/products.json').then(r => r.json()).catch(() => []),
+      getProducts({ activeOnly: false }).catch(() => [] as Product[]),
+    ])
+    const jsonProducts: Product[] = (jsonRes as Omit<Product, 'id' | 'created_at' | 'updated_at'>[])
+      .map((p, i) => ({ ...p, id: String(i + 1), created_at: '', updated_at: '' }))
+    const dbKeys = new Set(dbProducts.map((p: Product) => p.model_code + '_' + p.size_inch + '_' + p.color_variant))
+    const merged = [
+      ...dbProducts,
+      ...jsonProducts.filter(p => !dbKeys.has(p.model_code + '_' + p.size_inch + '_' + p.color_variant)),
+    ]
+    setProducts(merged)
     setLoading(false)
   }
 
