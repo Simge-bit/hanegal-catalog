@@ -31,7 +31,7 @@ export default function ProductCard({ product }: { product: Product }) {
         <div className="relative aspect-square bg-white overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={`${imgSrc}?v=2`}
+            src={`${imgSrc}?v=3`}
             alt={`${product.model_code} ${product.size_inch} İnç Jant Kapağı`}
             className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-300"
             loading="lazy"
