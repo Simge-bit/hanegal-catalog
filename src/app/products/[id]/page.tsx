@@ -5,7 +5,7 @@ import Header from '@/components/Header'
 import { Product, COLOR_LABELS } from '@/types/product'
 import { useLang } from '@/context/LangContext'
 import { ArrowLeft, MessageCircle, ZoomIn, X } from 'lucide-react'
-import { buildWhatsAppMessage } from '@/lib/vehicles'
+import { buildWhatsAppMessage, VEHICLES } from '@/lib/vehicles'
 
 export default function ProductDetail() {
   const { id } = useParams()
@@ -118,18 +118,23 @@ export default function ProductDetail() {
                   <span className="text-red-400 font-bold text-sm">Stokta Yok</span>
                 </div>
               )}
-              {product.compatible_cars && product.compatible_cars.length > 0 && (
-                <div className="py-3 border-b border-white/10">
-                  <span className="text-white/50 text-sm block mb-2">Uyumlu Araçlar</span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {product.compatible_cars.map(car => (
-                      <span key={car} className="text-xs px-2 py-1 rounded-full bg-white/5 border border-white/10 text-white/70">
-                        {car}
-                      </span>
-                    ))}
+              {(() => {
+                const cars = product.compatible_cars && product.compatible_cars.length > 0
+                  ? product.compatible_cars
+                  : VEHICLES.filter(v => v.sizes.includes(product.size_inch)).map(v => `${v.brand} ${v.model}`)
+                return cars.length > 0 ? (
+                  <div className="py-3 border-b border-white/10">
+                    <span className="text-white/50 text-sm block mb-2">Uyumlu Araçlar</span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {cars.map(car => (
+                        <span key={car} className="text-xs px-2 py-1 rounded-full bg-white/5 border border-white/10 text-white/70">
+                          {car}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
+                ) : null
+              })()}
             </div>
 
             <a
