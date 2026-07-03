@@ -69,7 +69,7 @@ export default function ProductDetail() {
         <div className="grid md:grid-cols-2 gap-8">
           {/* Görsel */}
           <div
-            className="relative bg-[#111] rounded-2xl overflow-hidden aspect-square cursor-zoom-in group"
+            className="relative bg-white rounded-2xl overflow-hidden aspect-square cursor-zoom-in group"
             onClick={() => setZoomed(true)}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}

@@ -28,12 +28,14 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <div className="group bg-[#2d2d2d] rounded-xl overflow-hidden border border-white/5 hover:border-[#CC0000]/50 transition-all duration-300 hover:shadow-lg hover:shadow-[#CC0000]/10">
       <Link href={`/products/${product.id}`} className="block">
-        <div className="relative aspect-square bg-[#2d2d2d] overflow-hidden">
+        <div className="relative aspect-square bg-white overflow-hidden">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={`${imgSrc}?v=2`}
             alt={`${product.model_code} ${product.size_inch} İnç Jant Kapağı`}
             className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform duration-300"
+            loading="lazy"
+            decoding="async"
           />
           <button
             onClick={e => { e.preventDefault(); toggle(product.id) }}
