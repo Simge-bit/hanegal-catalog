@@ -35,7 +35,7 @@ export default function AdminProducts() {
     ])
     type JsonProduct = Omit<Product, 'id' | 'created_at' | 'updated_at' | 'image_url'> & { image_path: string | null }
     const jsonProducts: Product[] = (jsonRes as JsonProduct[])
-      .map(({ image_path, ...p }, i) => ({ ...p, image_url: image_path ?? null, id: String(i + 1), created_at: '', updated_at: '' }))
+      .map(({ image_path, ...p }, i) => ({ ...p, image_url: null, id: String(i + 1), created_at: '', updated_at: '' }))
     const dbKeys = new Set(dbProducts.map((p: Product) => p.model_code + '_' + p.size_inch + '_' + p.color_variant))
     const merged = [
       ...dbProducts,
