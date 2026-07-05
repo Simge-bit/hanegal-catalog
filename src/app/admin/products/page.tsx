@@ -58,7 +58,10 @@ export default function AdminProducts() {
       if (imageFile && editProduct.model_code) {
         imageUrl = await uploadProductImage(imageFile, editProduct.model_code)
       }
-      await upsertProduct({ ...editProduct, image_url: imageUrl, base_model: editProduct.base_model || editProduct.model_code })
+      // JSON-fallback products carry a fake non-uuid id and blank timestamps; drop them so Supabase inserts a fresh row
+      const { id, created_at, updated_at, ...rest } = editProduct
+      const payload = editProduct.created_at ? { ...rest, id, created_at, updated_at } : rest
+      await upsertProduct({ ...payload, image_url: imageUrl, base_model: editProduct.base_model || editProduct.model_code })
       setEditProduct(null)
       setImageFile(null)
       setImagePreview(null)
