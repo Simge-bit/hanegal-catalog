@@ -33,8 +33,9 @@ export default function AdminProducts() {
       fetch('/products.json').then(r => r.json()).catch(() => []),
       getProducts({ activeOnly: false }).catch(() => [] as Product[]),
     ])
-    const jsonProducts: Product[] = (jsonRes as Omit<Product, 'id' | 'created_at' | 'updated_at'>[])
-      .map((p, i) => ({ ...p, id: String(i + 1), created_at: '', updated_at: '' }))
+    type JsonProduct = Omit<Product, 'id' | 'created_at' | 'updated_at' | 'image_url'> & { image_path: string | null }
+    const jsonProducts: Product[] = (jsonRes as JsonProduct[])
+      .map(({ image_path, ...p }, i) => ({ ...p, image_url: image_path ?? null, id: String(i + 1), created_at: '', updated_at: '' }))
     const dbKeys = new Set(dbProducts.map((p: Product) => p.model_code + '_' + p.size_inch + '_' + p.color_variant))
     const merged = [
       ...dbProducts,
