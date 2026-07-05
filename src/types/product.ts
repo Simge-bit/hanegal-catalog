@@ -1,4 +1,4 @@
-export type ColorVariant = 'silver' | 'black_chrome' | 'bicolor' | 'black'
+export type ColorVariant = 'silver' | 'bicolor' | 'black'
 
 export interface Product {
   id: string
@@ -17,7 +17,6 @@ export interface Product {
 
 export const COLOR_LABELS: Record<ColorVariant, { tr: string; en: string }> = {
   silver: { tr: 'Gümüş', en: 'Silver' },
-  black_chrome: { tr: 'Siyah Krom', en: 'Black Chrome' },
   bicolor: { tr: 'Siyah & Gümüş', en: 'Black & Silver' },
   black: { tr: 'Siyah', en: 'Black' },
 }

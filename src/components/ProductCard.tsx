@@ -8,7 +8,6 @@ import { buildWhatsAppMessage } from '@/lib/vehicles'
 
 const COLOR_BADGE: Record<string, string> = {
   silver: 'bg-gray-300 text-gray-800',
-  black_chrome: 'bg-gray-800 text-gray-200 border border-gray-600',
   bicolor: 'bg-gradient-to-r from-gray-800 to-gray-300 text-white',
   black: 'bg-black text-white border border-gray-700',
 }

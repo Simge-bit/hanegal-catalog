@@ -35,7 +35,7 @@
     "model_code": "3111S",
     "base_model": "3111",
     "size_inch": 13,
-    "color_variant": "black_chrome",
+    "color_variant": "black",
     "image_path": "/products/3111S_13inc.png",
     "is_active": true
   },
@@ -43,7 +43,7 @@
     "model_code": "4111S",
     "base_model": "4111",
     "size_inch": 14,
-    "color_variant": "black_chrome",
+    "color_variant": "black",
     "image_path": "/products/4111S_14inc.png",
     "is_active": true
   },
@@ -51,7 +51,7 @@
     "model_code": "5111S",
     "base_model": "5111",
     "size_inch": 15,
-    "color_variant": "black_chrome",
+    "color_variant": "black",
     "image_path": "/products/5111S_15inc.png",
     "is_active": true
   },
@@ -59,7 +59,7 @@
     "model_code": "6111S",
     "base_model": "6111",
     "size_inch": 16,
-    "color_variant": "black_chrome",
+    "color_variant": "black",
     "image_path": "/products/6111S_16inc.png",
     "is_active": true
   },
@@ -123,7 +123,7 @@
     "model_code": "3052S",
     "base_model": "3052",
     "size_inch": 13,
-    "color_variant": "black_chrome",
+    "color_variant": "black",
     "image_path": "/products/3052S_13inc.png",
     "is_active": true
   },
@@ -131,7 +131,7 @@
     "model_code": "4404S",
     "base_model": "4404",
     "size_inch": 14,
-    "color_variant": "black_chrome",
+    "color_variant": "black",
     "image_path": "/products/4404S_14inc.png",
     "is_active": true
   },
@@ -139,7 +139,7 @@
     "model_code": "5504S",
     "base_model": "5504",
     "size_inch": 15,
-    "color_variant": "black_chrome",
+    "color_variant": "black",
     "image_path": "/products/5504S_15inc.png",
     "is_active": true
   },
@@ -187,7 +187,7 @@
     "model_code": "5509S",
     "base_model": "5509",
     "size_inch": 15,
-    "color_variant": "black_chrome",
+    "color_variant": "black",
     "image_path": "/products/5509S_15inc.png",
     "is_active": true
   },
@@ -195,7 +195,7 @@
     "model_code": "6509S",
     "base_model": "6509",
     "size_inch": 16,
-    "color_variant": "black_chrome",
+    "color_variant": "black",
     "image_path": "/products/6509S_16inc.png",
     "is_active": true
   },
@@ -611,7 +611,7 @@
     "model_code": "5900S",
     "base_model": "5900",
     "size_inch": 15,
-    "color_variant": "black_chrome",
+    "color_variant": "black",
     "image_path": "/products/5900S_15inc.png",
     "is_active": true
   },
@@ -643,7 +643,7 @@
     "model_code": "4409S",
     "base_model": "4409",
     "size_inch": 14,
-    "color_variant": "black_chrome",
+    "color_variant": "black",
     "image_path": "/products/4409S_14inc.png",
     "is_active": true
   },
@@ -675,7 +675,7 @@
     "model_code": "4921S",
     "base_model": "4921",
     "size_inch": 14,
-    "color_variant": "black_chrome",
+    "color_variant": "black",
     "image_path": "/products/4921S_14inc.png",
     "is_active": true
   },
@@ -707,7 +707,7 @@
     "model_code": "5903S",
     "base_model": "5903",
     "size_inch": 15,
-    "color_variant": "black_chrome",
+    "color_variant": "black",
     "image_path": "/products/5903S_15inc.png",
     "is_active": true
   },
@@ -715,7 +715,7 @@
     "model_code": "5510S",
     "base_model": "5510",
     "size_inch": 15,
-    "color_variant": "black_chrome",
+    "color_variant": "black",
     "image_path": "/products/5510S_15inc.png",
     "is_active": true
   },
@@ -723,7 +723,7 @@
     "model_code": "6510S",
     "base_model": "6510",
     "size_inch": 16,
-    "color_variant": "black_chrome",
+    "color_variant": "black",
     "image_path": "/products/6510S_16inc.png",
     "is_active": true
   },
@@ -739,7 +739,7 @@
     "model_code": "4920S",
     "base_model": "4920",
     "size_inch": 14,
-    "color_variant": "black_chrome",
+    "color_variant": "black",
     "image_path": "/products/4920S_14inc.png",
     "is_active": true
   },

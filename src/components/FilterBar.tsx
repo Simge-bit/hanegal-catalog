@@ -23,7 +23,6 @@ interface FilterBarProps {
 const COLORS: { value: ColorVariant | ''; labelTr: string; labelEn: string }[] = [
   { value: '', labelTr: 'Tüm Renkler', labelEn: 'All Colors' },
   { value: 'silver', labelTr: 'Gümüş', labelEn: 'Silver' },
-  { value: 'black_chrome', labelTr: 'Siyah Krom', labelEn: 'Black Chrome' },
   { value: 'bicolor', labelTr: 'Siyah & Gümüş', labelEn: 'Black & Silver' },
   { value: 'black', labelTr: 'Siyah', labelEn: 'Black' },
 ]
