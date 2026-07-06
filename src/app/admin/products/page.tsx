@@ -50,6 +50,12 @@ export default function AdminProducts() {
     router.push('/admin/login')
   }
 
+  // JSON-fallback products carry a fake non-uuid id and blank timestamps; drop them so Supabase inserts a fresh row
+  function toUpsertPayload(product: Partial<Product>) {
+    const { id, created_at, updated_at, ...rest } = product
+    return product.created_at ? { ...rest, id, created_at, updated_at } : rest
+  }
+
   async function handleSave() {
     if (!editProduct) return
     setSaving(true)
@@ -58,10 +64,7 @@ export default function AdminProducts() {
       if (imageFile && editProduct.model_code) {
         imageUrl = await uploadProductImage(imageFile, editProduct.model_code)
       }
-      // JSON-fallback products carry a fake non-uuid id and blank timestamps; drop them so Supabase inserts a fresh row
-      const { id, created_at, updated_at, ...rest } = editProduct
-      const payload = editProduct.created_at ? { ...rest, id, created_at, updated_at } : rest
-      await upsertProduct({ ...payload, image_url: imageUrl, base_model: editProduct.base_model || editProduct.model_code })
+      await upsertProduct({ ...toUpsertPayload(editProduct), image_url: imageUrl, base_model: editProduct.base_model || editProduct.model_code })
       setEditProduct(null)
       setImageFile(null)
       setImagePreview(null)
@@ -72,15 +75,27 @@ export default function AdminProducts() {
     setSaving(false)
   }
 
-  async function handleDelete(id: string) {
+  async function handleDelete(product: Product) {
     if (!confirm('Bu ürünü silmek istediğinize emin misiniz?')) return
-    await deleteProduct(id)
-    await loadProducts()
+    try {
+      if (product.created_at) {
+        await deleteProduct(product.id)
+      } else {
+        await upsertProduct(toUpsertPayload({ ...product, is_active: false }))
+      }
+      await loadProducts()
+    } catch (e) {
+      alert('Silme hatası: ' + (e as Error).message)
+    }
   }
 
   async function handleToggleActive(product: Product) {
-    await upsertProduct({ ...product, is_active: !product.is_active })
-    await loadProducts()
+    try {
+      await upsertProduct(toUpsertPayload({ ...product, is_active: !product.is_active }))
+      await loadProducts()
+    } catch (e) {
+      alert('Güncelleme hatası: ' + (e as Error).message)
+    }
   }
 
   function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
@@ -196,7 +211,7 @@ export default function AdminProducts() {
                             <Pencil className="w-4 h-4" />
                           </button>
                           <button
-                            onClick={() => handleDelete(product.id)}
+                            onClick={() => handleDelete(product)}
                             className="p-1.5 text-white/40 hover:text-red-400 hover:bg-red-400/10 rounded-lg transition-colors"
                           >
                             <Trash2 className="w-4 h-4" />

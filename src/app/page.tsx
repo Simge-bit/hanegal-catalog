@@ -116,11 +116,11 @@ export default function Home() {
   useEffect(() => {
     Promise.all([
       loadFromJson(),
-      getProducts({ activeOnly: true }).catch(() => [] as Product[]),
+      getProducts({ activeOnly: false }).catch(() => [] as Product[]),
     ]).then(([jsonProducts, dbProducts]) => {
       const dbIds = new Set(dbProducts.map(p => p.model_code + '_' + p.size_inch + '_' + p.color_variant))
       const merged = [
-        ...dbProducts,
+        ...dbProducts.filter(p => p.is_active),
         ...jsonProducts.filter(p => !dbIds.has(p.model_code + '_' + p.size_inch + '_' + p.color_variant)),
       ]
       setProducts(merged)
