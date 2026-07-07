@@ -2,6 +2,7 @@
 import { useLang } from '@/context/LangContext'
 import { useFavorites } from '@/context/FavoritesContext'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Heart } from 'lucide-react'
 
 export default function Header() {
@@ -12,9 +13,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-[#1a1a1a] border-b border-[#CC0000]/30">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2">
-          <span className="text-[#CC0000] font-black text-2xl italic tracking-tight">
-            Hanegal
-          </span>
+          <Image src="/logo-hanegal.png" alt="Hanegal" width={433} height={119} className="h-8 w-auto" priority />
           <span className="text-white/50 text-xs mt-1">{lang === 'tr' ? 'KATALOG 2026' : 'CATALOG 2026'}</span>
         </Link>
 
