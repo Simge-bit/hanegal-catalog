@@ -57,5 +57,5 @@ export async function uploadProductImage(file: File, modelCode: string) {
     .upload(path, file, { upsert: true })
   if (error) throw error
   const { data } = supabase.storage.from('product-images').getPublicUrl(path)
-  return data.publicUrl
+  return `${data.publicUrl}?t=${Date.now()}`
 }
