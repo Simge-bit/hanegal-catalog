@@ -33,6 +33,9 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <Link href="/admin/login" className="px-3 py-1 text-xs border border-white/20 text-white/50 hover:border-[#CC0000] hover:text-[#CC0000] rounded-full transition-colors">
+            {lang === 'tr' ? 'Müşteri Girişi' : 'Customer Login'}
+          </Link>
           <Link href="/admin/login" className="px-3 py-1 text-xs border border-[#CC0000]/40 bg-[#CC0000]/10 text-[#CC0000]/70 hover:bg-[#CC0000]/20 hover:text-[#CC0000] rounded-full transition-colors">
             Admin
           </Link>
