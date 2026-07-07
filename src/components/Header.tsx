@@ -1,6 +1,7 @@
 'use client'
 import { useLang } from '@/context/LangContext'
 import { useFavorites } from '@/context/FavoritesContext'
+import { useSettings } from '@/context/SettingsContext'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Heart } from 'lucide-react'
@@ -8,6 +9,7 @@ import { Heart } from 'lucide-react'
 export default function Header() {
   const { lang, setLang, t } = useLang()
   const { favorites } = useFavorites()
+  const { settings } = useSettings()
 
   return (
     <header className="sticky top-0 z-50 bg-[#1a1a1a] border-b border-[#CC0000]/30">
@@ -21,7 +23,7 @@ export default function Header() {
           <Link href="/" className="hover:text-white transition-colors">{t('home')}</Link>
           <Link href="/products" className="hover:text-white transition-colors">{t('products')}</Link>
           <a
-            href={`https://wa.me/905436190346?text=${encodeURIComponent(lang === 'tr' ? 'Merhaba, Hanegal jant kapakları hakkında bilgi almak istiyorum.' : 'Hello, I would like to get information about Hanegal wheel covers.')}`}
+            href={`https://wa.me/${settings.whatsapp_number}?text=${encodeURIComponent(lang === 'tr' ? 'Merhaba, Hanegal jant kapakları hakkında bilgi almak istiyorum.' : 'Hello, I would like to get information about Hanegal wheel covers.')}`}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-white transition-colors"

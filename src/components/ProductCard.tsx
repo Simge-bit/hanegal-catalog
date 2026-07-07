@@ -2,6 +2,7 @@
 import { Product, COLOR_LABELS } from '@/types/product'
 import { useLang } from '@/context/LangContext'
 import { useFavorites } from '@/context/FavoritesContext'
+import { useSettings } from '@/context/SettingsContext'
 import Link from 'next/link'
 import { MessageCircle, Heart } from 'lucide-react'
 import { buildWhatsAppMessage } from '@/lib/vehicles'
@@ -15,6 +16,7 @@ const COLOR_BADGE: Record<string, string> = {
 export default function ProductCard({ product }: { product: Product }) {
   const { lang } = useLang()
   const { toggle, isFav } = useFavorites()
+  const { settings } = useSettings()
   const colorLabel = COLOR_LABELS[product.color_variant]?.[lang] ?? product.color_variant
   const fav = isFav(product.id)
 
@@ -68,7 +70,7 @@ export default function ProductCard({ product }: { product: Product }) {
 
       <div className="px-3 pb-3">
         <a
-          href={`https://wa.me/905436190346?text=${waMsg}`}
+          href={`https://wa.me/${settings.whatsapp_number}?text=${waMsg}`}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center gap-1.5 w-full py-1.5 rounded-lg bg-green-600/20 hover:bg-green-600/40 text-green-400 text-xs font-medium transition-colors"

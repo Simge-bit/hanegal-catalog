@@ -5,6 +5,7 @@ import ProductCard from '@/components/ProductCard'
 import FilterBar from '@/components/FilterBar'
 import { Product } from '@/types/product'
 import { useLang } from '@/context/LangContext'
+import { useSettings } from '@/context/SettingsContext'
 import { MessageCircle, Shield, Layers, FileDown } from 'lucide-react'
 import Link from 'next/link'
 import { getProducts } from '@/lib/supabase'
@@ -17,6 +18,7 @@ async function loadFromJson(): Promise<Product[]> {
 
 export default function Home() {
   const { lang, t } = useLang()
+  const { settings } = useSettings()
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
@@ -153,9 +155,7 @@ export default function Home() {
             Hane<span className="text-[#CC0000]">gal</span>
           </h1>
           <p className="text-white/40 text-sm mb-8 max-w-md mx-auto">
-            {lang === 'tr'
-              ? 'Türkiye\'nin önde gelen jant kapağı üreticisi. Kalite ve uyum bir arada.'
-              : 'Leading wheel cover manufacturer in Turkey. Quality and compatibility together.'}
+            {lang === 'tr' ? settings.hero_tagline_tr : settings.hero_tagline_en}
           </p>
 
           {/* Stats */}
@@ -181,7 +181,7 @@ export default function Home() {
               {lang === 'tr' ? 'Kataloğu İncele' : 'Browse Catalog'}
             </a>
             <a
-              href={`https://wa.me/905436190346?text=${encodeURIComponent(lang === 'tr' ? 'Merhaba, Hanegal jant kapakları hakkında bilgi almak istiyorum.' : 'Hello, I would like to get information about Hanegal wheel covers.')}`}
+              href={`https://wa.me/${settings.whatsapp_number}?text=${encodeURIComponent(lang === 'tr' ? 'Merhaba, Hanegal jant kapakları hakkında bilgi almak istiyorum.' : 'Hello, I would like to get information about Hanegal wheel covers.')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="px-6 py-3 border border-white/20 hover:border-[#CC0000] text-white/70 hover:text-white font-bold rounded-full text-sm transition-colors flex items-center gap-2"
@@ -261,7 +261,9 @@ export default function Home() {
           {/* Marka */}
           <div>
             <span className="text-[#CC0000] font-black text-2xl italic">Hanegal</span>
-            <p className="text-white/30 text-xs mt-2 leading-relaxed">{t('footerSlogan')}</p>
+            <p className="text-white/30 text-xs mt-2 leading-relaxed">
+              {lang === 'tr' ? settings.footer_slogan_tr : settings.footer_slogan_en}
+            </p>
           </div>
 
           {/* Linkler */}
@@ -281,7 +283,7 @@ export default function Home() {
           <div>
             <p className="text-white/50 text-xs uppercase tracking-widest mb-3">{t('footerContact')}</p>
             <a
-              href={`https://wa.me/905436190346`}
+              href={`https://wa.me/${settings.whatsapp_number}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 text-white/40 hover:text-green-400 text-sm transition-colors"

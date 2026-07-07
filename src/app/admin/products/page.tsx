@@ -6,7 +6,8 @@ import Image from 'next/image'
 import { supabase, getProducts, deleteProduct, upsertProduct, uploadProductImage } from '@/lib/supabase'
 import { Product, COLOR_LABELS, ColorVariant, SIZE_OPTIONS } from '@/types/product'
 import { useLang } from '@/context/LangContext'
-import { Plus, Pencil, Trash2, LogOut, Eye, EyeOff, Upload, X, Check } from 'lucide-react'
+import AdminHeader from '@/components/AdminHeader'
+import { Plus, Pencil, Trash2, Eye, EyeOff, Upload, X, Check } from 'lucide-react'
 
 export default function AdminProducts() {
   const router = useRouter()
@@ -43,11 +44,6 @@ export default function AdminProducts() {
     ]
     setProducts(merged)
     setLoading(false)
-  }
-
-  async function handleLogout() {
-    await supabase.auth.signOut()
-    router.push('/admin/login')
   }
 
   // JSON-fallback products carry a fake non-uuid id and blank timestamps; drop them so Supabase inserts a fresh row
@@ -111,29 +107,7 @@ export default function AdminProducts() {
 
   return (
     <div className="min-h-screen bg-[#1a1a1a]">
-      {/* Admin Header */}
-      <header className="sticky top-0 z-50 bg-[#2d2d2d] border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <span className="text-[#CC0000] font-black text-xl italic">Hanegal</span>
-            <span className="text-white/30 text-xs">{t('adminPanel')}</span>
-          </div>
-          <div className="flex items-center gap-3">
-            <button
-              onClick={() => router.push('/')}
-              className="text-xs text-white/50 hover:text-white px-3 py-1.5 border border-white/10 rounded-lg transition-colors"
-            >
-              Siteye Git
-            </button>
-            <button
-              onClick={handleLogout}
-              className="flex items-center gap-1.5 text-xs text-white/50 hover:text-white px-3 py-1.5 border border-white/10 rounded-lg transition-colors"
-            >
-              <LogOut className="w-3.5 h-3.5" /> {t('logout')}
-            </button>
-          </div>
-        </div>
-      </header>
+      <AdminHeader />
 
       <div className="max-w-7xl mx-auto px-4 py-8 space-y-6">
         {/* Top Bar */}

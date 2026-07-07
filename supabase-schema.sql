@@ -47,3 +47,26 @@ $$ language plpgsql;
 create trigger products_updated_at
   before update on products
   for each row execute function update_updated_at();
+
+-- Site ayarları (tek satırlık ayar tablosu)
+create table if not exists site_settings (
+  id integer primary key default 1,
+  whatsapp_number text not null default '905436190346',
+  hero_tagline_tr text not null default 'Türkiye''nin önde gelen jant kapağı üreticisi. Kalite ve uyum bir arada.',
+  hero_tagline_en text not null default 'Leading wheel cover manufacturer in Turkey. Quality and compatibility together.',
+  footer_slogan_tr text not null default 'Kaliteli jant kapağı, uygun fiyat.',
+  footer_slogan_en text not null default 'Quality wheel covers at the right price.',
+  updated_at timestamp with time zone default now(),
+  constraint site_settings_single_row check (id = 1)
+);
+
+insert into site_settings (id) values (1) on conflict (id) do nothing;
+
+alter table site_settings enable row level security;
+
+create policy "Public read settings" on site_settings for select using (true);
+create policy "Admin update settings" on site_settings for update using (auth.role() = 'authenticated');
+
+create trigger site_settings_updated_at
+  before update on site_settings
+  for each row execute function update_updated_at();

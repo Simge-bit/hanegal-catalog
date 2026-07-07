@@ -1,5 +1,6 @@
 import { createClient } from '@supabase/supabase-js'
 import { Product } from '@/types/product'
+import { SiteSettings, DEFAULT_SETTINGS } from '@/types/settings'
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || 'https://placeholder.supabase.co'
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || 'placeholder'
@@ -58,4 +59,21 @@ export async function uploadProductImage(file: File, modelCode: string) {
   if (error) throw error
   const { data } = supabase.storage.from('product-images').getPublicUrl(path)
   return `${data.publicUrl}?t=${Date.now()}`
+}
+
+export async function getSettings(): Promise<SiteSettings> {
+  const { data, error } = await supabase.from('site_settings').select('*').eq('id', 1).single()
+  if (error || !data) return DEFAULT_SETTINGS
+  return {
+    whatsapp_number: data.whatsapp_number,
+    hero_tagline_tr: data.hero_tagline_tr,
+    hero_tagline_en: data.hero_tagline_en,
+    footer_slogan_tr: data.footer_slogan_tr,
+    footer_slogan_en: data.footer_slogan_en,
+  }
+}
+
+export async function updateSettings(settings: SiteSettings) {
+  const { error } = await supabase.from('site_settings').update(settings).eq('id', 1)
+  if (error) throw error
 }

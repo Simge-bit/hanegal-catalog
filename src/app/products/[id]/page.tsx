@@ -4,6 +4,7 @@ import { useParams, useRouter } from 'next/navigation'
 import Header from '@/components/Header'
 import { Product, COLOR_LABELS } from '@/types/product'
 import { useLang } from '@/context/LangContext'
+import { useSettings } from '@/context/SettingsContext'
 import { ArrowLeft, MessageCircle, ZoomIn, X } from 'lucide-react'
 import { buildWhatsAppMessage, VEHICLES } from '@/lib/vehicles'
 
@@ -11,6 +12,7 @@ export default function ProductDetail() {
   const { id } = useParams()
   const router = useRouter()
   const { lang, t } = useLang()
+  const { settings } = useSettings()
   const [product, setProduct] = useState<Product | null>(null)
   const [related, setRelated] = useState<Product[]>([])
   const [zoomed, setZoomed] = useState(false)
@@ -138,7 +140,7 @@ export default function ProductDetail() {
             </div>
 
             <a
-              href={`https://wa.me/905436190346?text=${whatsappMsg}`}
+              href={`https://wa.me/${settings.whatsapp_number}?text=${whatsappMsg}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-3 bg-green-600 hover:bg-green-500 text-white font-bold py-4 rounded-xl transition-colors"
