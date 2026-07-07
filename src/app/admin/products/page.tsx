@@ -176,7 +176,7 @@ export default function AdminProducts() {
               </thead>
               <tbody>
                 {filtered.map(product => {
-                  const imgSrc = product.image_url || `/products/${product.model_code}_${product.size_inch}inc.webp`
+                  const imgSrc = product.image_url || `/products/${product.model_code}_${product.size_inch}inc.webp?v=4`
                   return (
                     <tr key={product.id} className="border-b border-white/5 hover:bg-white/5 transition-colors">
                       <td className="px-4 py-3">
@@ -245,7 +245,7 @@ export default function AdminProducts() {
               <div className="relative w-20 h-20 bg-[#1a1a1a] rounded-xl overflow-hidden flex-shrink-0">
                 {(imagePreview || editProduct.image_url || editProduct.model_code) && (
                   <Image
-                    src={imagePreview || editProduct.image_url || `/products/${editProduct.model_code}_${editProduct.size_inch}inc.webp`}
+                    src={imagePreview || editProduct.image_url || `/products/${editProduct.model_code}_${editProduct.size_inch}inc.webp?v=4`}
                     alt="preview"
                     fill
                     className="object-contain p-2"
