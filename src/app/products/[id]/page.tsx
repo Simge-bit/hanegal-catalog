@@ -74,7 +74,7 @@ export default function ProductDetail() {
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={`${imgSrc}?v=3`}
+              src={`${imgSrc}?v=4`}
               alt={`${product.model_code} ${product.size_inch}" Jant Kapağı`}
               className="w-full h-full object-contain p-4"
             />
