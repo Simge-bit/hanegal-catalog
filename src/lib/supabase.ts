@@ -77,3 +77,33 @@ export async function updateSettings(settings: SiteSettings) {
   const { error } = await supabase.from('site_settings').update(settings).eq('id', 1)
   if (error) throw error
 }
+
+export type UserRole = 'admin' | 'customer'
+
+export async function getUserRole(userId: string): Promise<UserRole> {
+  const { data } = await supabase.from('profiles').select('role').eq('id', userId).single()
+  return (data?.role as UserRole) ?? 'customer'
+}
+
+export async function getFavoriteIds(userId: string): Promise<string[]> {
+  const { data, error } = await supabase.from('customer_favorites').select('product_id').eq('user_id', userId)
+  if (error) throw error
+  return data.map(r => r.product_id as string)
+}
+
+export async function addFavorite(userId: string, productId: string) {
+  const { error } = await supabase.from('customer_favorites').insert({ user_id: userId, product_id: productId })
+  if (error) throw error
+}
+
+export async function removeFavorite(userId: string, productId: string) {
+  const { error } = await supabase.from('customer_favorites').delete().eq('user_id', userId).eq('product_id', productId)
+  if (error) throw error
+}
+
+export async function mergeLocalFavorites(userId: string, productIds: string[]) {
+  if (!productIds.length) return
+  const rows = productIds.map(product_id => ({ user_id: userId, product_id }))
+  const { error } = await supabase.from('customer_favorites').upsert(rows, { onConflict: 'user_id,product_id', ignoreDuplicates: true })
+  if (error) throw error
+}

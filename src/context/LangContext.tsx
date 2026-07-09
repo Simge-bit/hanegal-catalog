@@ -77,6 +77,13 @@ const translations = {
     updateCredentials: 'Giriş Bilgilerini Güncelle',
     credentialsUpdated: 'Giriş bilgileri güncellendi.',
     passwordsDontMatch: 'Şifreler eşleşmiyor.',
+    customerLogin: 'Müşteri Girişi',
+    customerSignup: 'Hesap Oluştur',
+    signUp: 'Kayıt Ol',
+    needAccount: 'Hesabın yok mu? Kayıt ol',
+    haveAccount: 'Zaten hesabın var mı? Giriş yap',
+    checkEmailToConfirm: 'Hesabını onaylamak için e-postanı kontrol et.',
+    myAccount: 'Hesabım',
   },
   en: {
     catalog: 'Catalog',
@@ -151,6 +158,13 @@ const translations = {
     updateCredentials: 'Update Credentials',
     credentialsUpdated: 'Credentials updated.',
     passwordsDontMatch: 'Passwords do not match.',
+    customerLogin: 'Customer Login',
+    customerSignup: 'Create Account',
+    signUp: 'Sign Up',
+    needAccount: "Don't have an account? Sign up",
+    haveAccount: 'Already have an account? Log in',
+    checkEmailToConfirm: 'Check your email to confirm your account.',
+    myAccount: 'My Account',
   },
 }
 

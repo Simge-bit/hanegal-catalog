@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { LangProvider } from "@/context/LangContext";
+import { AuthProvider } from "@/context/AuthContext";
 import { FavoritesProvider } from "@/context/FavoritesContext";
 import { SettingsProvider } from "@/context/SettingsContext";
 import { Analytics } from "@vercel/analytics/next";
@@ -51,7 +52,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
       </head>
       <body className="min-h-full flex flex-col bg-[#1a1a1a] text-white">
-        <LangProvider><SettingsProvider><FavoritesProvider>{children}</FavoritesProvider></SettingsProvider></LangProvider>
+        <LangProvider><AuthProvider><SettingsProvider><FavoritesProvider>{children}</FavoritesProvider></SettingsProvider></AuthProvider></LangProvider>
         <Analytics />
       </body>
     </html>

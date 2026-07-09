@@ -1,16 +1,15 @@
 'use client'
 export const dynamic = 'force-dynamic'
 import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation'
-import Image from 'next/image'
-import { supabase, getProducts, deleteProduct, upsertProduct, uploadProductImage } from '@/lib/supabase'
+import { getProducts, deleteProduct, upsertProduct, uploadProductImage } from '@/lib/supabase'
 import { Product, COLOR_LABELS, ColorVariant, SIZE_OPTIONS } from '@/types/product'
 import { useLang } from '@/context/LangContext'
+import { useAdminGuard } from '@/lib/useAdminGuard'
 import AdminHeader from '@/components/AdminHeader'
 import { Plus, Pencil, Trash2, Eye, EyeOff, Upload, X, Check } from 'lucide-react'
 
 export default function AdminProducts() {
-  const router = useRouter()
+  const { ready } = useAdminGuard()
   const { t, lang } = useLang()
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
@@ -22,11 +21,11 @@ export default function AdminProducts() {
   const [carInput, setCarInput] = useState('')
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => {
-      if (!data.session) router.push('/admin/login')
-    })
+    if (!ready) return
     loadProducts()
-  }, [])
+  }, [ready])
+
+  if (!ready) return null
 
   async function loadProducts() {
     setLoading(true)
@@ -155,7 +154,8 @@ export default function AdminProducts() {
                     <tr key={product.id} className="border-b border-white/5 hover:bg-white/5 transition-colors">
                       <td className="px-4 py-3">
                         <div className="relative w-12 h-12 bg-[#1a1a1a] rounded-lg overflow-hidden">
-                          <Image src={imgSrc} alt={product.model_code} fill className="object-contain p-1" />
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img src={imgSrc} alt={product.model_code} className="w-full h-full object-contain p-1" />
                         </div>
                       </td>
                       <td className="px-4 py-3 font-mono font-bold text-white">{product.model_code}</td>
@@ -218,11 +218,11 @@ export default function AdminProducts() {
             <div className="flex items-center gap-4">
               <div className="relative w-20 h-20 bg-[#1a1a1a] rounded-xl overflow-hidden flex-shrink-0">
                 {(imagePreview || editProduct.image_url || editProduct.model_code) && (
-                  <Image
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
                     src={imagePreview || editProduct.image_url || `/products/${editProduct.model_code}_${editProduct.size_inch}inc.webp?v=4`}
                     alt="preview"
-                    fill
-                    className="object-contain p-2"
+                    className="w-full h-full object-contain p-2"
                   />
                 )}
               </div>

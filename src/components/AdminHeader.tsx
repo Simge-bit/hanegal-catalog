@@ -3,7 +3,7 @@ import { useRouter, usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { supabase } from '@/lib/supabase'
 import { useLang } from '@/context/LangContext'
-import { LogOut, Settings, LayoutGrid } from 'lucide-react'
+import { LogOut, LayoutGrid } from 'lucide-react'
 
 export default function AdminHeader() {
   const router = useRouter()
@@ -17,7 +17,6 @@ export default function AdminHeader() {
 
   const tabs = [
     { href: '/admin/products', label: t('products'), icon: LayoutGrid },
-    { href: '/admin/settings', label: t('settings'), icon: Settings },
   ]
 
   return (

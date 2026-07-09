@@ -2,6 +2,7 @@
 import { useLang } from '@/context/LangContext'
 import { useFavorites } from '@/context/FavoritesContext'
 import { useSettings } from '@/context/SettingsContext'
+import { useAuth } from '@/context/AuthContext'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Heart } from 'lucide-react'
@@ -10,6 +11,8 @@ export default function Header() {
   const { lang, setLang, t } = useLang()
   const { favorites } = useFavorites()
   const { settings } = useSettings()
+  const { session, role, signOut } = useAuth()
+  const isCustomer = !!session && role === 'customer'
 
   return (
     <header className="sticky top-0 z-50 bg-[#1a1a1a] border-b border-[#CC0000]/30">
@@ -33,9 +36,18 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-3">
-          <Link href="/admin/login" className="px-3 py-1 text-xs border border-white/20 text-white/50 hover:border-[#CC0000] hover:text-[#CC0000] rounded-full transition-colors">
-            {lang === 'tr' ? 'Müşteri Girişi' : 'Customer Login'}
-          </Link>
+          {isCustomer ? (
+            <button
+              onClick={() => signOut()}
+              className="px-3 py-1 text-xs border border-white/20 text-white/50 hover:border-[#CC0000] hover:text-[#CC0000] rounded-full transition-colors"
+            >
+              {t('logout')}
+            </button>
+          ) : (
+            <Link href="/login" className="px-3 py-1 text-xs border border-white/20 text-white/50 hover:border-[#CC0000] hover:text-[#CC0000] rounded-full transition-colors">
+              {t('customerLogin')}
+            </Link>
+          )}
           <Link href="/admin/login" className="px-3 py-1 text-xs border border-[#CC0000]/40 bg-[#CC0000]/10 text-[#CC0000]/70 hover:bg-[#CC0000]/20 hover:text-[#CC0000] rounded-full transition-colors">
             Admin
           </Link>
