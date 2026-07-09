@@ -84,6 +84,8 @@ const translations = {
     haveAccount: 'Zaten hesabın var mı? Giriş yap',
     checkEmailToConfirm: 'Hesabını onaylamak için e-postanı kontrol et.',
     myAccount: 'Hesabım',
+    useAdminLoginInstead: 'Bu hesap bir admin hesabı. Lütfen Admin girişini kullan.',
+    notAdminAccount: 'Bu hesap admin yetkisine sahip değil.',
   },
   en: {
     catalog: 'Catalog',
@@ -165,6 +167,8 @@ const translations = {
     haveAccount: 'Already have an account? Log in',
     checkEmailToConfirm: 'Check your email to confirm your account.',
     myAccount: 'My Account',
+    useAdminLoginInstead: 'This is an admin account. Please use the Admin login instead.',
+    notAdminAccount: 'This account does not have admin access.',
   },
 }
 

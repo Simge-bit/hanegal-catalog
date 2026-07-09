@@ -2,7 +2,7 @@
 export const dynamic = 'force-dynamic'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { supabase, getUserRole } from '@/lib/supabase'
 import { useLang } from '@/context/LangContext'
 import Header from '@/components/Header'
 
@@ -27,9 +27,15 @@ export default function CustomerLogin() {
       if (error) setError(error.message)
       else setInfo(t('checkEmailToConfirm'))
     } else {
-      const { error } = await supabase.auth.signInWithPassword({ email, password })
-      if (error) setError(error.message)
-      else router.push('/favorites')
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+      if (error) {
+        setError(error.message)
+      } else if ((await getUserRole(data.user.id)) === 'admin') {
+        await supabase.auth.signOut()
+        setError(t('useAdminLoginInstead'))
+      } else {
+        router.push('/favorites')
+      }
     }
     setLoading(false)
   }

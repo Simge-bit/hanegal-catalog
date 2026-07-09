@@ -2,7 +2,7 @@
 export const dynamic = 'force-dynamic'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { supabase } from '@/lib/supabase'
+import { supabase, getUserRole } from '@/lib/supabase'
 import { useLang } from '@/context/LangContext'
 
 export default function AdminLogin() {
@@ -17,9 +17,12 @@ export default function AdminLogin() {
     e.preventDefault()
     setLoading(true)
     setError('')
-    const { error } = await supabase.auth.signInWithPassword({ email, password })
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password })
     if (error) {
       setError(error.message)
+    } else if ((await getUserRole(data.user.id)) !== 'admin') {
+      await supabase.auth.signOut()
+      setError(t('notAdminAccount'))
     } else {
       router.push('/admin/products')
     }
