@@ -8,19 +8,24 @@ import { useLang } from '@/context/LangContext'
 import { useSettings } from '@/context/SettingsContext'
 import { MessageCircle, Shield, Layers, FileDown } from 'lucide-react'
 import Link from 'next/link'
-import { getProducts } from '@/lib/supabase'
+import { getRawProducts, getCachedRawProducts } from '@/lib/productsCache'
 
-async function loadFromJson(): Promise<Product[]> {
-  const res = await fetch('/products.json')
-  const data: Omit<Product, 'id' | 'created_at' | 'updated_at'>[] = await res.json()
-  return data.map((p, i) => ({ ...p, id: String(i + 1), created_at: '', updated_at: '' }))
+function mergeProducts(jsonProducts: Product[], dbProducts: Product[]): Product[] {
+  const dbIds = new Set(dbProducts.map(p => p.model_code + '_' + p.size_inch + '_' + p.color_variant))
+  return [
+    ...dbProducts.filter(p => p.is_active),
+    ...jsonProducts.filter(p => !dbIds.has(p.model_code + '_' + p.size_inch + '_' + p.color_variant)),
+  ]
 }
 
 export default function Home() {
   const { lang, t } = useLang()
   const { settings } = useSettings()
-  const [products, setProducts] = useState<Product[]>([])
-  const [loading, setLoading] = useState(true)
+  const cachedRaw = getCachedRawProducts()
+  const [products, setProducts] = useState<Product[]>(() =>
+    cachedRaw ? mergeProducts(cachedRaw.jsonProducts, cachedRaw.dbProducts) : []
+  )
+  const [loading, setLoading] = useState(() => !cachedRaw)
   const [search, setSearch] = useState('')
   const [size, setSize] = useState('')
   const [color, setColor] = useState('')
@@ -116,17 +121,12 @@ export default function Home() {
   }
 
   useEffect(() => {
-    Promise.all([
-      loadFromJson(),
-      getProducts({ activeOnly: false }).catch(() => [] as Product[]),
-    ]).then(([jsonProducts, dbProducts]) => {
-      const dbIds = new Set(dbProducts.map(p => p.model_code + '_' + p.size_inch + '_' + p.color_variant))
-      const merged = [
-        ...dbProducts.filter(p => p.is_active),
-        ...jsonProducts.filter(p => !dbIds.has(p.model_code + '_' + p.size_inch + '_' + p.color_variant)),
-      ]
-      setProducts(merged)
-    }).finally(() => setLoading(false))
+    if (getCachedRawProducts()) return
+    getRawProducts()
+      .then(({ jsonProducts, dbProducts }) => {
+        setProducts(mergeProducts(jsonProducts, dbProducts))
+      })
+      .finally(() => setLoading(false))
   }, [])
 
   const filtered = useMemo(() => {
@@ -163,7 +163,7 @@ export default function Home() {
             {[
               { value: `${products.length}+`, label: lang === 'tr' ? 'Ürün Modeli' : 'Product Models' },
               { value: '31', label: lang === 'tr' ? 'Araç Modeli' : 'Car Models' },
-              { value: '13-16"', label: lang === 'tr' ? 'İnç Aralığı' : 'Inch Range' },
+              { value: '12-16"', label: lang === 'tr' ? 'İnç Aralığı' : 'Inch Range' },
               { value: '4', label: lang === 'tr' ? 'Renk Seçeneği' : 'Color Options' },
             ].map(stat => (
               <div key={stat.label} className="text-center">
@@ -297,7 +297,7 @@ export default function Home() {
         <div className="border-t border-white/5 py-4 flex items-center justify-center gap-4 text-white/20 text-xs">
           <span>{t('allRightsReserved')}</span>
           <span className="text-white/10">·</span>
-          <span>Made with <span className="text-[#CC0000]">♥</span> by <span className="text-white/40 font-medium">Simge Solmaz</span></span>
+          <span>Made with <span className="text-[#CC0000]">♥</span> by <span className="text-white/40 font-medium">Simge Solmaz — Lonca Dijital</span></span>
         </div>
       </footer>
     </div>

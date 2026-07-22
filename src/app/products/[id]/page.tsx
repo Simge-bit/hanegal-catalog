@@ -7,35 +7,38 @@ import { useLang } from '@/context/LangContext'
 import { useSettings } from '@/context/SettingsContext'
 import { ArrowLeft, MessageCircle, ZoomIn, X } from 'lucide-react'
 import { buildWhatsAppMessage, VEHICLES } from '@/lib/vehicles'
+import { getRawProducts, getCachedRawProducts } from '@/lib/productsCache'
+
+function mergeAll(jsonProducts: Product[], dbProducts: Product[]): Product[] {
+  const dbIds = new Set(dbProducts.map(p => p.model_code + '_' + p.size_inch + '_' + p.color_variant))
+  return [
+    ...dbProducts,
+    ...jsonProducts.filter(p => !dbIds.has(p.model_code + '_' + p.size_inch + '_' + p.color_variant)),
+  ]
+}
+
+function findProductAndRelated(all: Product[], id: string): { product: Product | null; related: Product[] } {
+  const found = all.find(p => p.id === id) || null
+  const related = found ? all.filter(p => p.base_model === found.base_model && p.id !== found.id) : []
+  return { product: found, related }
+}
 
 export default function ProductDetail() {
-  const { id } = useParams()
+  const { id } = useParams<{ id: string }>()
   const router = useRouter()
   const { lang, t } = useLang()
   const { settings } = useSettings()
-  const [product, setProduct] = useState<Product | null>(null)
-  const [related, setRelated] = useState<Product[]>([])
+  const cachedRaw = getCachedRawProducts()
+  const initial = cachedRaw ? findProductAndRelated(mergeAll(cachedRaw.jsonProducts, cachedRaw.dbProducts), id) : null
+  const [product, setProduct] = useState<Product | null>(initial?.product ?? null)
+  const [related, setRelated] = useState<Product[]>(initial?.related ?? [])
   const [zoomed, setZoomed] = useState(false)
 
   useEffect(() => {
-    const loadJson = () =>
-      fetch('/products.json')
-        .then(r => r.json())
-        .then((data: Omit<Product, 'id' | 'created_at' | 'updated_at'>[]) =>
-          data.map((p, i) => ({ ...p, id: String(i + 1), created_at: '', updated_at: '' }))
-        )
-    Promise.all([
-      loadJson(),
-      import('@/lib/supabase').then(({ getProducts }) => getProducts({ activeOnly: false })).catch(() => [] as Product[]),
-    ]).then(([jsonProducts, dbProducts]) => {
-      const dbIds = new Set(dbProducts.map(p => p.model_code + '_' + p.size_inch + '_' + p.color_variant))
-      const all = [
-        ...dbProducts,
-        ...jsonProducts.filter(p => !dbIds.has(p.model_code + '_' + p.size_inch + '_' + p.color_variant)),
-      ]
-      const found = all.find(p => p.id === id)
-      setProduct(found || null)
-      if (found) setRelated(all.filter(p => p.base_model === found.base_model && p.id !== found.id))
+    getRawProducts().then(({ jsonProducts, dbProducts }) => {
+      const { product: found, related: rel } = findProductAndRelated(mergeAll(jsonProducts, dbProducts), id)
+      setProduct(found)
+      setRelated(rel)
     })
   }, [id])
 
